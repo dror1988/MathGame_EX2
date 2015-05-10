@@ -41,7 +41,12 @@ class AdvExercise{
 
 	void resetMinNubers();
 	void createAdvExerciseString();
-	bool solveExercise(int tryNum) const;
+	bool checkIfPossible(int tryNum) const;
+	bool checkIfComplete(int tryNum) const;
+	// const variables
+	const static unsigned int EMPTY_CELL = 10001;
+	const static unsigned int MIN_NUM = 1;
+	const static unsigned int MAX_NUM = 21;
 
 public:
 	// exercise constructor
@@ -49,6 +54,8 @@ public:
 
 	// "targil" getter
 	string getAdvExercise();
+	// check if a number is one of the possible solutions of the exercise
+	bool isPossibleSolution(int tryNum);
 	// check if a number completes the exercise
 	bool isAdvExerciseComplete(int tryNum);
 };

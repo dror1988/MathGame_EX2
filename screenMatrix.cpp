@@ -49,8 +49,13 @@ bool screenMatrix::isNumberExist(Point numberPosition){
 void screenMatrix::createNumber(int currentLevel){
 	int triesCounter = 0;
 	bool isSuccess = false;
-	int num = rand() % (10 + currentLevel) + 1;
-	
+	int num;
+
+	if (currentLevel<=11)
+		num = rand() % (10 + currentLevel) + 1;
+	else
+		num = rand() % 21 + 1;
+		
 	if (num < 10)
 	{
 		while (isSuccess == false && triesCounter < 10)

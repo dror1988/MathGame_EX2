@@ -168,6 +168,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 	if (clockTicksCurrentLevel % 5 == 0){
 		stBar.decTimeLeft();
 		stBar.updateTimeLeft();
+
+		// create a number each second instaed of each 200ms, if successful print to screen
+		myScreen.createNumber(currentLevel);
 	}
 
 	// using the input from the users keyboard hits
@@ -203,9 +206,6 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			break;
 		}
 	}
-
-	// create a number, if successful print to screen
-	myScreen.createNumber(currentLevel);
 
 	// check if the player is still alive and according to the direction of its
 	// movment and the position of the oponent player see if the player can move

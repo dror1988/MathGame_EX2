@@ -28,7 +28,7 @@ void AdvExercise::resetMinNubers() {
 
 	for (int i=0;i<4; ++i)
 		if (arrNum[i]==minNum){
-			arrNum[i]=10001;
+			arrNum[i]=EMPTY_CELL;
 			i=4;
 		}
 
@@ -36,7 +36,7 @@ void AdvExercise::resetMinNubers() {
 
 	for (int i=0;i<4; ++i)
 		if (arrNum[i]==minNum){
-			arrNum[i]=10001;
+			arrNum[i]=EMPTY_CELL;
 			i=4;
 		}
 
@@ -48,7 +48,7 @@ void AdvExercise::createAdvExerciseString(){
 
 	// create the exercise string
 	for (int i=0; i<4; ++i){
-		if (arrNum[i]==10001)
+		if (arrNum[i]==EMPTY_CELL)
 			strAdvExercise+="_";
 		else{
 			_itoa_s(arrNum[i], strNumber, sizeof(strNumber), 10);
@@ -70,7 +70,7 @@ void AdvExercise::createAdvExerciseString(){
 	}
 }
 
-bool AdvExercise::solveExercise(int tryNum) const {
+bool AdvExercise::checkIfPossible(int tryNum) const {
 	double tmpArr[4];
 	int varIndex=0;
 	double result;
@@ -81,14 +81,14 @@ bool AdvExercise::solveExercise(int tryNum) const {
 	
 	// set tryNum in the correct place
 	for (int i=0; i<4; ++i)
-		if (tmpArr[i]==10001){
+		if (tmpArr[i]==EMPTY_CELL){
 			tmpArr[i]=(double)tryNum;
 			i=4;
 		}
 
 	// find the index of the missing variable
 	for (int i=0; i<4; ++i)
-		if (tmpArr[i]==(double)10001){
+		if (tmpArr[i]==(double)EMPTY_CELL){
 			varIndex=i;
 			i=4;
 		}
@@ -240,10 +240,173 @@ bool AdvExercise::solveExercise(int tryNum) const {
 		break;
 	}
 
-	if (result<=21 && result>=1 && result==(int)result)
+	if (result <= MAX_NUM && result >= MIN_NUM && result == (int)result)
 				return true;
 			else
 				return false;
+}
+
+bool AdvExercise::checkIfComplete(int tryNum) const{
+	int varIndex = 0;
+	//double result;
+
+	// find the index of the missing variable
+	for (int i = 0; i<4; ++i)
+	if (arrNum[i] == EMPTY_CELL){
+		varIndex = i;
+		i = 4;
+	}
+
+	switch (oper1){
+	case '+':
+		switch (oper2){
+		case '+':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] + arrNum[1] + arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] - arrNum[0] - arrNum[1]);
+			else
+				return (tryNum == arrNum[3] - arrNum[0] - arrNum[2]);
+			break;
+		case '*':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] + (arrNum[1] * arrNum[2]));
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[3] - arrNum[0]) / arrNum[1]);
+			else
+				return (tryNum == (arrNum[3] - arrNum[0]) / arrNum[2]);
+			break;
+		case '-':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] + arrNum[1] - arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[0] + arrNum[1] + arrNum[3]);
+			else
+				return (tryNum == arrNum[3] - arrNum[0] + arrNum[2]);
+			break;
+		case '/':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] + (arrNum[1] / arrNum[2]));
+			else if (varIndex == 2)
+				return (tryNum == arrNum[1] / (arrNum[3] - arrNum[0]));
+			else
+				return (tryNum == (arrNum[3] - arrNum[0])*arrNum[2]);
+			break;
+		}
+		break;
+	case '*':
+		switch (oper2){
+		case '+':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] * arrNum[1]) + arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] - (arrNum[0] * arrNum[1]));
+			else
+				return (tryNum == (arrNum[3] - arrNum[2]) / arrNum[0]);
+			break;
+		case '*':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] * (arrNum[1] * arrNum[2]));
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] / (arrNum[0] * arrNum[1]));
+			else
+				return (tryNum == arrNum[3] / (arrNum[0] * arrNum[2]));
+			break;
+		case '-':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] * arrNum[1]) - arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] * arrNum[1]) - arrNum[3]);
+			else
+				return (tryNum == (arrNum[3] + arrNum[2]) / arrNum[0]);
+			break;
+		case '/':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] * arrNum[1]) / arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] * arrNum[1]) / arrNum[3]);
+			else
+				return (tryNum == (arrNum[3] * arrNum[2]) / arrNum[0]);
+			break;
+		}
+		break;
+	case '-':
+		switch (oper2){
+		case '+':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] - arrNum[1] + arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] - arrNum[0] + arrNum[1]);
+			else
+				return (tryNum == arrNum[0] + arrNum[2] - arrNum[0]);
+			break;
+		case '*':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] - (arrNum[1] * arrNum[2]));
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] - arrNum[3]) / arrNum[1]);
+			else
+				return (tryNum == (arrNum[0] - arrNum[3]) / arrNum[2]);
+			break;
+		case '-':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] - arrNum[1] - arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[0] - arrNum[1] - arrNum[3]);
+			else
+				return (tryNum == arrNum[0] - arrNum[2] - arrNum[3]);
+			break;
+		case '/':
+			if (varIndex == 3)
+				return (tryNum == arrNum[0] - (arrNum[1] / arrNum[2]));
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] - arrNum[3]) / arrNum[1]);
+			else
+				return (tryNum == (arrNum[0] - arrNum[3]) / arrNum[2]);
+			break;
+		}
+		break;
+	case '/':
+		switch (oper2){
+		case '+':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] / arrNum[1]) + arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] - (arrNum[0] / arrNum[1]));
+			else
+				return (tryNum == arrNum[0] - (arrNum[3] - arrNum[2]));
+			break;
+		case '*':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] / arrNum[1])*arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == arrNum[3] * (arrNum[0] / arrNum[1]));
+			else
+				return (tryNum == (arrNum[0] * arrNum[2]) / arrNum[3]);
+			break;
+		case '-':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] / arrNum[1]) - arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] / arrNum[1]) - arrNum[3]);
+			else
+				return (tryNum == arrNum[0] / (arrNum[2] - arrNum[3]));
+			break;
+		case '/':
+			if (varIndex == 3)
+				return (tryNum == (arrNum[0] / arrNum[1]) / arrNum[2]);
+			else if (varIndex == 2)
+				return (tryNum == (arrNum[0] / arrNum[1]) / arrNum[3]);
+			else
+				return (tryNum == arrNum[0] / (arrNum[3] * arrNum[2]));
+			break;
+		}
+		break;
+	default:
+		return false;
+	}
+
+	return false;
 }
 
 //==========================================================
@@ -262,7 +425,7 @@ AdvExercise::AdvExercise(int currentLvl){
 	// randomly choose 3 numbers using 10 + current level
 	for (int i=0; i<3; ++i)	
 		arrNum[i] = rand() % (21) + 1;
-	arrNum[3]=10001;
+	arrNum[3]=EMPTY_CELL;
 
 	// create an exercise according to the operator
 	switch (chooseOper1){
@@ -298,12 +461,6 @@ AdvExercise::AdvExercise(int currentLvl){
 		default:
 			break;
 		}
-
-		// hide lowest numbers
-		resetMinNubers();
-		// create the exercise string
-		createAdvExerciseString();
-
 		break;
 	// case the first operator should be -
 	case 1:
@@ -313,13 +470,15 @@ AdvExercise::AdvExercise(int currentLvl){
 		// case the second operator should be +
 		case 0:
 			oper2 = '+';
-			arrNum[3]=arrNum[0];
-			arrNum[0]=arrNum[3]+arrNum[1]+arrNum[2];
+			arrNum[0] = arrNum[0] + arrNum[1];
+			arrNum[3]=arrNum[0]-arrNum[1]+arrNum[2];
 			break;
 		// case the operator operator should be -
 		case 1:
 			oper2 = '-';
-			arrNum[3]=arrNum[0]-arrNum[1]-arrNum[2];
+			arrNum[3] = arrNum[1];
+			arrNum[1] = arrNum[0];
+			arrNum[0] = arrNum[0] + arrNum[2] + arrNum[3];
 			break;
 		// case the operator operator should be *
 		case 2:
@@ -330,19 +489,14 @@ AdvExercise::AdvExercise(int currentLvl){
 		// case the operator operator should be /
 		case 3:
 			oper2 = '/';
+			arrNum[3] = arrNum[0];
 			// arrNum[1]=(res/arrNum[2])
 			arrNum[1]=arrNum[1]*arrNum[2];
-			arrNum[3]=arrNum[0]-(arrNum[1]/arrNum[2]);
+			arrNum[0]=arrNum[3]+(arrNum[1]/arrNum[2]);
 			break;
 		default:
 			break;
 		}
-
-		// hide lowest numbers
-		resetMinNubers();
-		// create the exercise string
-		createAdvExerciseString();
-
 		break;
 	// case the first operator should be *
 	case 2:
@@ -357,7 +511,9 @@ AdvExercise::AdvExercise(int currentLvl){
 		// case the operator operator should be -
 		case 1:
 			oper2 = '-';
-			arrNum[3]=(arrNum[0]*arrNum[1])-arrNum[2];
+			arrNum[3] = arrNum[1];
+			arrNum[1]=arrNum[2]+arrNum[3];
+			arrNum[3] = (arrNum[0] * arrNum[1]) - arrNum[2];
 			break;
 		// case the operator operator should be *
 		case 2:
@@ -374,12 +530,6 @@ AdvExercise::AdvExercise(int currentLvl){
 		default:
 			break;
 		}
-
-		// hide lowest numbers
-		resetMinNubers();
-		// create the exercise string
-		createAdvExerciseString();
-
 		break;
 	// case the first operator should be /
 	case 3:
@@ -397,8 +547,9 @@ AdvExercise::AdvExercise(int currentLvl){
 		case 1:
 			oper2 = '-';
 			// arrNum[0]=(res/arrNum[1])
-			arrNum[0]=arrNum[0]*arrNum[1];
-			arrNum[3]=(arrNum[0]/arrNum[1])-arrNum[2];
+			arrNum[3]=arrNum[1];
+			arrNum[1] = arrNum[2] + arrNum[3];
+			arrNum[0] = arrNum[0] * arrNum[1];
 			break;
 		// case the operator operator should be *
 		case 2:
@@ -420,16 +571,15 @@ AdvExercise::AdvExercise(int currentLvl){
 		default:
 			break;
 		}
-
-		// hide lowest numbers
-		resetMinNubers();
-		// create the exercise string
-		createAdvExerciseString();
-
 		break;
 	default:
 		break;
 	}
+
+	// hide lowest numbers
+	resetMinNubers();
+	// create the exercise string
+	createAdvExerciseString();
 
 }
 
@@ -445,8 +595,21 @@ string AdvExercise::getAdvExercise(){
 // when user eats a number, check if 
 // the number completes the exercise
 //====================================
+bool AdvExercise::isPossibleSolution(int tryNum){
+	if (checkIfPossible(tryNum) == true){
+		for (int i = 0; i<4; ++i)
+		if (arrNum[i] == EMPTY_CELL){
+			arrNum[i] = tryNum;
+			i = 4;
+		}
+		return true;
+	}
+
+	return false;
+}
+
 bool AdvExercise::isAdvExerciseComplete(int tryNum){
-	return solveExercise(tryNum);
+	return checkIfComplete(tryNum);
 }
 
 //+++++++++++++++++++++

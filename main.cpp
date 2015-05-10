@@ -43,21 +43,6 @@ int main(){
 	clear_screen();
 	hideCursor();
 
-	AdvExercise *ex1;
-	int num;
-
-	while (1>0){
-		ex1=new AdvExercise(30);
-		cout<<ex1->getAdvExercise()<<endl;
-		cin>>num;
-
-		if (ex1->isAdvExerciseComplete(num))
-			cout<<"OK"<<endl;
-		else
-			cout<<"Fail!"<<endl;
-		delete ex1;
-	}
-
 	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-13
 	// +++++++++++++++++++++++++++++++++++++++++++++++++
