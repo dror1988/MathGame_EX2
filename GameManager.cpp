@@ -238,7 +238,28 @@ void GameManager::chooseLevelToStart(){
 		gotoxy(41, 11);
 		cout << "  ";
 		gotoxy(41, 11);
-		cin >> startLvl;
+
+		// Save cursor in the boundries
+		char input[3];
+		for (int i = 0; i<2; ++i){
+				char ch = _getch();
+				if (ch != '\r'){
+					input[i] = ch;
+					printf("%c", ch);
+				}
+				else if (ch == '\r' && i == 0){
+					i = -1;
+					gotoxy(41, 11);
+				}
+				else{
+					input[i] = '\0';
+					i = 2;
+				}
+		}
+		input[2] = '\0';
+
+		startLvl=atoi(input);
+
 	} while (startLvl<1 || startLvl>ISpecificGame::MAX_LEVEL);
 
 	currentLevel = startLvl-1;
