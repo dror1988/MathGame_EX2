@@ -74,6 +74,11 @@ public:
 
 	//update time left value
 	void updateTimeLeft();
+
+	//new code EX2
+	//update the player life amount
+	void updatePlayerExercise(unsigned int playerNumber);
+	//end new code EX2
 };
 
 #endif

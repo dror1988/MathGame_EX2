@@ -22,7 +22,7 @@
 #include "AdvExercise.h"
 
 void AdvExercise::resetMinNubers() {
-	int minNum=0;
+	unsigned int minNum = 0;
 
 	minNum=min(min(arrNum[0],arrNum[1]),min(arrNum[2],arrNum[3]));
 
@@ -45,6 +45,8 @@ void AdvExercise::resetMinNubers() {
 void AdvExercise::createAdvExerciseString(){
 	// place to store itoa_s result
 	char strNumber[5]="";
+	
+	strAdvExercise = "";
 
 	// create the exercise string
 	for (int i=0; i<4; ++i){
@@ -70,7 +72,7 @@ void AdvExercise::createAdvExerciseString(){
 	}
 }
 
-bool AdvExercise::checkIfPossible(int tryNum) const {
+bool AdvExercise::checkIfPossible(unsigned int tryNum) const {
 	double tmpArr[4];
 	int varIndex=0;
 	double result;
@@ -116,7 +118,7 @@ bool AdvExercise::checkIfPossible(int tryNum) const {
 			if (varIndex==3)
 				result=tmpArr[0]+tmpArr[1]-tmpArr[2];
 			else if (varIndex==2)
-				result=tmpArr[0]+tmpArr[1]+tmpArr[3];
+				result=tmpArr[0]+tmpArr[1]-tmpArr[3];
 			else
 				result=tmpArr[3]-tmpArr[0]+tmpArr[2];
 			break;
@@ -246,7 +248,7 @@ bool AdvExercise::checkIfPossible(int tryNum) const {
 				return false;
 }
 
-bool AdvExercise::checkIfComplete(int tryNum) const{
+bool AdvExercise::checkIfComplete(unsigned int tryNum) const{
 	int varIndex = 0;
 	//double result;
 
@@ -417,15 +419,17 @@ bool AdvExercise::checkIfComplete(int tryNum) const{
 // EX2 instructions and create a string that will be used to 
 // present the exercise to the players
 //==========================================================
-AdvExercise::AdvExercise(int currentLvl){
+AdvExercise::AdvExercise(unsigned int currentLvl){
 	//temp variable to help and choose the "+,-,/,*" according to rand function
 	int chooseOper1 = rand() % 4;
 	int chooseOper2 = rand() % 4;
 
-	// randomly choose 3 numbers using 10 + current level
+	// randomly choose 3 numbers in the range of 1-21
 	for (int i=0; i<3; ++i)	
 		arrNum[i] = rand() % (21) + 1;
 	arrNum[3]=EMPTY_CELL;
+
+	missingVars = 2;
 
 	// create an exercise according to the operator
 	switch (chooseOper1){
@@ -595,11 +599,13 @@ string AdvExercise::getAdvExercise(){
 // when user eats a number, check if 
 // the number completes the exercise
 //====================================
-bool AdvExercise::isPossibleSolution(int tryNum){
+bool AdvExercise::isPossibleSolution(unsigned int tryNum){
 	if (checkIfPossible(tryNum) == true){
 		for (int i = 0; i<4; ++i)
 		if (arrNum[i] == EMPTY_CELL){
 			arrNum[i] = tryNum;
+			createAdvExerciseString();
+			missingVars = 1;
 			i = 4;
 		}
 		return true;
@@ -608,8 +614,12 @@ bool AdvExercise::isPossibleSolution(int tryNum){
 	return false;
 }
 
-bool AdvExercise::isAdvExerciseComplete(int tryNum){
+bool AdvExercise::isAdvExerciseComplete(unsigned int tryNum){
 	return checkIfComplete(tryNum);
+}
+
+unsigned int AdvExercise::getMissingVars(){
+	return missingVars;
 }
 
 //+++++++++++++++++++++

@@ -132,8 +132,20 @@ void TheMathGame::startLevel(int level){
 	player1.setLives(3);
 	player1.setPosition(Point(10, 9));
 	player1.changeDirection(Direction::RIGHT);
-	player1.resetExercise();
-	player1.createExercise(currentLevel);
+
+	if (currentLevel >= 1 && currentLevel < 20){
+		player1.resetExercise();
+		player1.createExercise(currentLevel);
+	}
+	else if (currentLevel == 20){
+		player1.resetExercise();
+		player1.createAdvExercise(currentLevel);
+	}
+	else{
+		player1.resetAdvExercise();
+		player1.createAdvExercise(currentLevel);
+	}
+
 	player1.resetPlayerAlive();
 	player1.resetPlayerDone();
 
@@ -141,8 +153,20 @@ void TheMathGame::startLevel(int level){
 	player2.setLives(3);
 	player2.setPosition(Point(70, 9));
 	player2.changeDirection(Direction::LEFT);
-	player2.resetExercise();
-	player2.createExercise(currentLevel);
+
+	if (currentLevel >= 1 && currentLevel < 20){
+		player2.resetExercise();
+		player2.createExercise(currentLevel);
+	}
+	else if (currentLevel == 20){
+		player2.resetExercise();
+		player2.createAdvExercise(currentLevel);
+	}
+	else{
+		player2.resetAdvExercise();
+		player2.createAdvExercise(currentLevel);
+	}
+
 	player2.resetPlayerAlive();
 	player2.resetPlayerDone();
 
@@ -215,17 +239,32 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		player1.playerDraw();
 
 		// check if the player is now eating a number
-		if (myScreen.isNumberExist(player1.getPosition()))
-			// check if the number that the player is eating is the sulotion for his "targil"
-		if (!player1.isPlayerDone(myScreen.getNumberInPos(player1.getPosition()))){
-			player1.setLives(player1.getLives() - 1);
-			stBar.updatePlayerLife(1);
-			// if user ran out of lives
-			if (!player1.isPlayerAlive())
-				player1.playerErase();
-		}
-		else{
-			player1.setScore(player1.getScore() + 1);
+		if (myScreen.isNumberExist(player1.getPosition())){
+			if (currentLevel <= 20 || (player1.numMissinValues(currentLevel) == 1)){
+				// check if the number that the player is eating is the sulotion for his "targil"
+				if (!player1.isPlayerDone(myScreen.getNumberInPos(player1.getPosition()))){
+					player1.setLives(player1.getLives() - 1);
+					stBar.updatePlayerLife(1);
+					// if user ran out of lives
+					if (!player1.isPlayerAlive())
+						player1.playerErase();
+				}
+				else{
+					player1.setScore(player1.getScore() + 1);
+				}
+			}
+			else if (player1.numMissinValues(currentLevel) == 2){
+				if (!player1.isPossibleSulotion(myScreen.getNumberInPos(player1.getPosition()))){
+					player1.setLives(player1.getLives() - 1);
+					stBar.updatePlayerLife(1);
+					// if user ran out of lives
+					if (!player1.isPlayerAlive())
+						player1.playerErase();
+				}
+				else{
+					stBar.updatePlayerExercise(1);
+				}
+			}
 		}
 
 	}
@@ -238,17 +277,32 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		player2.playerDraw();
 
 		// check if the player is now eating a number
-		if (myScreen.isNumberExist(player2.getPosition()))
-			// check if the number that the player is eating is the sulotion for his "targil"
-		if (!player2.isPlayerDone(myScreen.getNumberInPos(player2.getPosition()))){
-			player2.setLives(player2.getLives() - 1);
-			stBar.updatePlayerLife(2);
-			// if user ran out of lives
-			if (!player2.isPlayerAlive())
-				player2.playerErase();
-		}
-		else{
-			player2.setScore(player2.getScore() + 1);
+		if (myScreen.isNumberExist(player2.getPosition())){
+			if (currentLevel <= 20 || (player2.numMissinValues(currentLevel) == 1)){
+				// check if the number that the player is eating is the sulotion for his "targil"
+				if (!player2.isPlayerDone(myScreen.getNumberInPos(player2.getPosition()))){
+					player2.setLives(player2.getLives() - 1);
+					stBar.updatePlayerLife(2);
+					// if user ran out of lives
+					if (!player2.isPlayerAlive())
+						player2.playerErase();
+				}
+				else{
+					player2.setScore(player2.getScore() + 1);
+				}
+			}
+			else if (player2.numMissinValues(currentLevel) == 2){
+				if (!player2.isPossibleSulotion(myScreen.getNumberInPos(player2.getPosition()))){
+					player2.setLives(player2.getLives() - 1);
+					stBar.updatePlayerLife(2);
+					// if user ran out of lives
+					if (!player2.isPlayerAlive())
+						player2.playerErase();
+				}
+				else{
+					stBar.updatePlayerExercise(2);
+				}
+			}
 		}
 
 	}

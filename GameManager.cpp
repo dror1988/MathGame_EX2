@@ -225,7 +225,7 @@ void GameManager::chooseLevelToStart(){
 	{
 		cout << " ========================= ";
 		gotoxy(28, 10);
-		cout << "|     Choose lvl 1-20     |";
+		cout << "|     Choose lvl 1-40     |";
 		gotoxy(28, 11);
 		cout << "|           -  -          |";
 		gotoxy(28, 12);
@@ -239,7 +239,7 @@ void GameManager::chooseLevelToStart(){
 		cout << "  ";
 		gotoxy(41, 11);
 		cin >> startLvl;
-	} while (startLvl<1 || startLvl>20);
+	} while (startLvl<1 || startLvl>ISpecificGame::MAX_LEVEL);
 
 	currentLevel = startLvl-1;
 

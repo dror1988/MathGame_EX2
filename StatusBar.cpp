@@ -34,12 +34,20 @@ void StatusBar::drawStatusBar(){
 	}
 
 	{ //Print 2nd Line in Status Bar
-		gotoxy(0,1);
-		cout<<"Targil: "<<p1.getExercise();
-		gotoxy(28,1);
-		cout<<"|        Level:"<<currentLevel;
-		gotoxy(51,1);
-		cout<<"| Targil: "<<p2.getExercise();
+		if (currentLevel <= 20){
+			gotoxy(0, 1);
+			cout << "Targil: " << p1.getExercise();
+			gotoxy(51, 1);
+			cout << "| Targil: " << p2.getExercise();
+		}
+		else{
+			gotoxy(0, 1);
+			cout << "Targil: " << p1.getAdvExercise();
+			gotoxy(51, 1);
+			cout << "| Targil: " << p2.getAdvExercise();
+		}
+		gotoxy(28, 1);
+		cout << "|        Level:" << currentLevel;
 	}
 
 	{
@@ -79,6 +87,24 @@ void StatusBar::updateTimeLeft(){
 	setTextColor(WHITE);
 }
 
+
+//new code EX2
+//===================================
+//updates and prints player life value
+//===================================
+void StatusBar::updatePlayerExercise(unsigned int playerNumber){
+	setTextColor(LIGHTCYAN);
+	if (playerNumber == 1){
+		gotoxy(8, 1);
+		cout << p1.getAdvExercise();
+	}
+	else if (playerNumber == 2){
+		gotoxy(61, 1);
+		cout << p2.getAdvExercise();
+	}
+	setTextColor(WHITE);
+}
+//end new code EX2
 
 //+++++++++++++++++++++
 // END of NEW CODE EX1

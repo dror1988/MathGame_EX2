@@ -56,6 +56,11 @@ public:
 	// END of NEW CODE EX1
 	//+++++++++++++++++++++
 
+
+	//ne code ex2
+	const static unsigned int MAX_LEVEL = 40;
+	//new code ex2
+
 };
 
 #endif

@@ -1,0 +1,9 @@
+*.suo
+*.obj
+*.log
+Debug/TheMathGame.pdb
+*.tlog
+Debug/vc120.idb
+*.pdb
+TheMathGame.sdf
+*.exe

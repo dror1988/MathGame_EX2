@@ -25,8 +25,10 @@
 #include <string>
 #include "Direction.h"
 #include "Exercise.h"
+#include "AdvExercise.h"
 #include "Point.h"
 #include "io_utils.h"
+
 
 using namespace std;
 
@@ -42,23 +44,27 @@ class Player{
 	bool playerDone;
 	Direction::VALUE playerDirection;
 	Exercise* playerExercise;
+	AdvExercise* playerAdvExercise;
 	Point playerPosition;
 public:
 	// player default constructor
 	Player()
 		:playerChar(0), playerScore(0), playerLives(3), playerAlive(true), playerDone(false), playerDirection(Direction::STAY),
-		playerPosition(Point(0,0)), playerExercise(NULL){
+		playerPosition(Point(0, 0)), playerExercise(NULL), playerAdvExercise(NULL){
 	}
 	// player constructor
 	Player(unsigned char playerChar, Direction::VALUE playerDirection, Point playerPosition)
 		:playerChar(playerChar), playerScore(0), playerLives(3), playerAlive(true), playerDone(false), playerDirection(playerDirection),
-		playerPosition(playerPosition), playerExercise(NULL){
+		playerPosition(playerPosition), playerExercise(NULL), playerAdvExercise(NULL){
 	}
 	// player destructor
 	~Player(){
 		// if player has an exercise, release it
 		if (playerExercise != NULL)
 			delete playerExercise;
+		// if player has an advance exercise, release it
+		if (playerAdvExercise != NULL)
+			delete playerAdvExercise;
 	}
 
 	// score getter
@@ -72,6 +78,35 @@ public:
 	// exercise getter
 	string getExercise()const;
 
+	//=============
+	//NEW CODE EX2
+	//=============
+	int numMissinValues(int currentLevel)const{
+		if (currentLevel <= 20)
+			return -1;
+		else
+			return playerAdvExercise->getMissingVars();
+	}
+	// advance exercise getter
+	string getAdvExercise()const;
+	// exercise creator
+	AdvExercise* createAdvExercise(int currentLevel);
+	bool isPossibleSulotion(unsigned int eatenNumber);
+	//===========================
+	// delete old exercise and
+	// create a new one
+	//===========================
+	void resetAdvExercise(){
+		// if there is an exercise 
+		if (playerAdvExercise != NULL){
+			delete playerAdvExercise;
+			playerAdvExercise = NULL;
+		}
+	}
+	//=============
+	//END NEW CODE EX2
+	//=============
+
 	// score setter
 	unsigned int setScore(unsigned int newScore);
 	// lives setter
@@ -82,6 +117,7 @@ public:
 	Direction::VALUE changeDirection(Direction::VALUE newDirection);
 	// exercise creator
 	Exercise* createExercise(int currentLevel);
+
 
 	//===========================
 	// delete old exercise and

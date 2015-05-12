@@ -34,15 +34,16 @@ using namespace std;
 // adnaced exercise or "targil"
 //=====================================
 class AdvExercise{
-	int arrNum[4];
+	unsigned int arrNum[4];
 	unsigned char oper1;
 	unsigned char oper2;
+	unsigned int missingVars;
 	string strAdvExercise;
 
 	void resetMinNubers();
 	void createAdvExerciseString();
-	bool checkIfPossible(int tryNum) const;
-	bool checkIfComplete(int tryNum) const;
+	bool checkIfPossible(unsigned int tryNum) const;
+	bool checkIfComplete(unsigned int tryNum) const;
 	// const variables
 	const static unsigned int EMPTY_CELL = 10001;
 	const static unsigned int MIN_NUM = 1;
@@ -50,14 +51,16 @@ class AdvExercise{
 
 public:
 	// exercise constructor
-	AdvExercise(int currentLvl);
+	AdvExercise(unsigned int currentLvl);
 
 	// "targil" getter
 	string getAdvExercise();
 	// check if a number is one of the possible solutions of the exercise
-	bool isPossibleSolution(int tryNum);
+	bool isPossibleSolution(unsigned int tryNum);
 	// check if a number completes the exercise
-	bool isAdvExerciseComplete(int tryNum);
+	bool isAdvExerciseComplete(unsigned int tryNum);
+	// missing vars getter
+	unsigned int getMissingVars();
 };
 
 #endif

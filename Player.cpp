@@ -103,6 +103,7 @@ Exercise* Player::createExercise(int currentLevel){
 		return NULL;
 }
 
+
 //===================================
 // verify if player is alive 
 // according to the number
@@ -114,14 +115,55 @@ bool Player::isPlayerAlive(){
 	return playerAlive;
 }
 
+//==================================
+// NEW CODE EX2
+//==================================
+
+//===================================
+// advance exercise getter
+//===================================
+string Player::getAdvExercise()const{
+	if (playerAdvExercise != NULL)
+		return playerAdvExercise->getAdvExercise();
+	else
+		return "";
+}
+
+//===================================
+// advance exercise creator
+//===================================
+AdvExercise* Player::createAdvExercise(int currentLevel){
+	if (playerAdvExercise == NULL){
+		playerAdvExercise = new AdvExercise(currentLevel);
+		return playerAdvExercise;
+	}
+	else
+		return NULL;
+}
+
 //===================================
 // verify if a player is done 
 // according to the number he ate
 //===================================
 bool Player::isPlayerDone(unsigned int eatenNumber){
-	playerDone=playerExercise->isExerciseComplete(eatenNumber);
+	if (playerExercise!=NULL)
+		playerDone=playerExercise->isExerciseComplete(eatenNumber);
+	else if ((playerAdvExercise != NULL) && (playerAdvExercise->getMissingVars()==1))
+		playerDone = playerAdvExercise->isAdvExerciseComplete(eatenNumber);
 	return playerDone;
 }
+
+//===================================
+// verify if a player eaten number
+// is a possible solution
+//===================================
+bool Player::isPossibleSulotion(unsigned int eatenNumber){
+	return playerAdvExercise->isPossibleSolution(eatenNumber);
+}
+
+//==================================
+// END NEW CODE EX2
+//==================================
 
 //===================================
 // player done getter
