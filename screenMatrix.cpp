@@ -187,24 +187,26 @@ unsigned int screenMatrix::getNumberInPos(Point numberPosition){
 	unsigned int returnNum;
 	if (!matrix[numberPosition.y][numberPosition.x]->getIsOnes() && !matrix[numberPosition.y][numberPosition.x]->getIsTens()){
 		returnNum=matrix[numberPosition.y][numberPosition.x]->getNum();
+		gotoxy(numberPosition.x, numberPosition.y);
+		cout << " ";
 		eraseNumberInPos(numberPosition);
 		return returnNum;
 	}
 	else {
 		if (matrix[numberPosition.y][numberPosition.x]->getIsOnes()){
 			returnNum=matrix[numberPosition.y][numberPosition.x]->getNum() + matrix[numberPosition.y][numberPosition.x-1]->getNum()*10;
+			gotoxy(numberPosition.x - 1, numberPosition.y);
+			cout << "  ";
 			eraseNumberInPos(numberPosition);
 			eraseNumberInPos(Point(numberPosition.x-1,numberPosition.y));
-			gotoxy(numberPosition.x-1,numberPosition.y);
-			cout<<" ";
 			return returnNum;
 		}
 		else{
 			returnNum=matrix[numberPosition.y][numberPosition.x]->getNum()*10 + matrix[numberPosition.y][numberPosition.x+1]->getNum();
+			gotoxy(numberPosition.x, numberPosition.y);
+			cout << "  ";
 			eraseNumberInPos(numberPosition);
 			eraseNumberInPos(Point(numberPosition.x+1,numberPosition.y));
-			gotoxy(numberPosition.x+1,numberPosition.y);
-			cout<<" ";
 			return returnNum;
 		}
 	}

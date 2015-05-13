@@ -78,6 +78,8 @@ public:
 	//new code EX2
 	//update the player life amount
 	void updatePlayerExercise(unsigned int playerNumber);
+	//update the player life amount
+	void updatePlayerShots(unsigned int playerNumber);
 	//end new code EX2
 };
 

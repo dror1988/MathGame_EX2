@@ -19,15 +19,17 @@
 // +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "io_utils.h"
+#include "Direction.h"
 #include "screenMatrix.h"
+#include "Exercise.h"
 #include "Player.h"
+#include "Point.h"
 #include "StatusBar.h"
 #include "shotsArray.h"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include "ISpecificGame.h"
-
 class TheMathGame : public ISpecificGame
 {
 	Player player1;
@@ -39,6 +41,7 @@ class TheMathGame : public ISpecificGame
 	shotsArray playShooting;
 	// const variables
 	const static unsigned int CLOCK_TICKS_PER_LEVEL = 1500;
+	const static unsigned int MAX_LEVEL = 20;
 public:
 	//=================================================
 	// Default constructor

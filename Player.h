@@ -40,6 +40,7 @@ class Player{
 	unsigned char playerChar;
 	unsigned int playerScore;
 	unsigned int playerLives;
+	unsigned int shotsCounter;
 	bool playerAlive;
 	bool playerDone;
 	Direction::VALUE playerDirection;
@@ -71,6 +72,8 @@ public:
 	unsigned int getScore()const;
 	// lives getter
 	unsigned int getLives()const;
+	//shptsCounter getter
+	unsigned int getShotsCounter()const;
 	// position getter
 	Point getPosition()const;
 	// direction getter
@@ -111,6 +114,8 @@ public:
 	unsigned int setScore(unsigned int newScore);
 	// lives setter
 	unsigned int setLives(unsigned int newLives);
+	//shptsCounter setter
+	unsigned int setShotsCounter(unsigned int newShotsCounter);
 	// position setter
 	Point setPosition(Point newPosition);
 	// direction setter
@@ -155,6 +160,7 @@ public:
 	void playerMove();
 	// verify if a move is legal according to the other players position
 	bool isMoveLegal(Point otherPlayerPos);
+	Point playerNextPos();
 };
 
 #endif

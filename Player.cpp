@@ -36,6 +36,13 @@ unsigned int Player::getLives()const{
 }
 
 //===================================
+// ShotsCounter getter
+//===================================
+unsigned int Player::getShotsCounter()const{
+	return shotsCounter;
+}
+
+//===================================
 // position getter
 //===================================
 Point Player::getPosition()const{
@@ -73,6 +80,14 @@ unsigned int Player::setScore(unsigned int newScore){
 unsigned int Player::setLives(unsigned int newLives){
 	playerLives = newLives;
 	return playerLives;
+}
+
+//===================================
+// shotsCounter setter
+//===================================
+unsigned int Player::setShotsCounter(unsigned int newShotsCounter){
+	shotsCounter = newShotsCounter;
+	return shotsCounter;
 }
 
 //===================================
@@ -278,6 +293,15 @@ bool Player::isMoveLegal(Point otherPlayerPos){
 		return false;
 	else
 		return true;
+}
+
+Point Player::playerNextPos()
+{
+	Player tmp;
+	tmp.setPosition(this->playerPosition);
+	tmp.changeDirection(this->playerDirection);
+	tmp.playerMove();
+	return tmp.getPosition();
 }
 
 //+++++++++++++++++++++

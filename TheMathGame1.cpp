@@ -40,7 +40,6 @@ void TheMathGame::printCurrentScreen(){
 	setTextColor(WHITE);
 	stBar.drawStatusBar();
 	myScreen.printMatrix();
-	playShooting.printShots();
 }
 
 //=================================================
@@ -133,20 +132,8 @@ void TheMathGame::startLevel(int level){
 	player1.setLives(3);
 	player1.setPosition(Point(10, 9));
 	player1.changeDirection(Direction::RIGHT);
-
-	if (currentLevel >= 1 && currentLevel < 20){
-		player1.resetExercise();
-		player1.createExercise(currentLevel);
-	}
-	else if (currentLevel == 20){
-		player1.resetExercise();
-		player1.createAdvExercise(currentLevel);
-	}
-	else{
-		player1.resetAdvExercise();
-		player1.createAdvExercise(currentLevel);
-	}
-
+	player1.resetExercise();
+	player1.createExercise(currentLevel);
 	player1.resetPlayerAlive();
 	player1.resetPlayerDone();
 	player1.setShotsCounter(5);
@@ -155,20 +142,8 @@ void TheMathGame::startLevel(int level){
 	player2.setLives(3);
 	player2.setPosition(Point(70, 9));
 	player2.changeDirection(Direction::LEFT);
-
-	if (currentLevel >= 1 && currentLevel < 20){
-		player2.resetExercise();
-		player2.createExercise(currentLevel);
-	}
-	else if (currentLevel == 20){
-		player2.resetExercise();
-		player2.createAdvExercise(currentLevel);
-	}
-	else{
-		player2.resetAdvExercise();
-		player2.createAdvExercise(currentLevel);
-	}
-
+	player2.resetExercise();
+	player2.createExercise(currentLevel);
 	player2.resetPlayerAlive();
 	player2.resetPlayerDone();
 	player2.setShotsCounter(5);
@@ -180,9 +155,6 @@ void TheMathGame::startLevel(int level){
 
 	// erasing the screen matrix
 	myScreen.eraseMatrix();
-
-	// erase all bullets from screen and cleans the array
-	playShooting.initArr();
 }
 
 //=================================================
@@ -202,143 +174,101 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		//adding shots to the player every 200 clocks cycles
 		if (clockTicksCurrentLevel % 200 == 0){
 			player1.setShotsCounter(player1.getShotsCounter() + 1);
-			stBar.updatePlayerShots(1);
 			player2.setShotsCounter(player2.getShotsCounter() + 1);
-			stBar.updatePlayerShots(2);
 		}
 
 		// create a number each second instaed of each 200ms, if successful print to screen
 		myScreen.createNumber(currentLevel);
-	}
 
-	// using the input from the users keyboard hits
-	for (list<char>::const_iterator itr = keyHits.begin(); itr != keyHits.end(); ++itr){
-		char ch = *itr;
-		// according to the users key hits change the direction if needed
-		switch (ch){
-		case 'i':
-			player2.changeDirection(Direction::UP);
-			break;
-		case 'w':
-			player1.changeDirection(Direction::UP);
-			break;
-		case 'j':
-			player2.changeDirection(Direction::LEFT);
-			break;
-		case 'a':
-			player1.changeDirection(Direction::LEFT);
-			break;
-		case 'm':
-			player2.changeDirection(Direction::DOWN);
-			break;
-		case 'x':
-			player1.changeDirection(Direction::DOWN);
-			break;
-		case 'l':
-			player2.changeDirection(Direction::RIGHT);
-			break;
-		case 'd':
-			player1.changeDirection(Direction::RIGHT);
-			break;
-		case 'z':
-			if (player1.getShotsCounter() > 0){
-				int index;
-				index=playShooting.addShot(player1.getPosition(), player1.getDirection());
-				playShooting.getShotInArr(index)->shotMove(); 
-				playShooting.getShotInArr(index)->shotMove();
-				player1.setShotsCounter(player1.getShotsCounter() - 1);
-				stBar.updatePlayerShots(1);
+		// using the input from the users keyboard hits
+		for (list<char>::const_iterator itr = keyHits.begin(); itr != keyHits.end(); ++itr){
+			char ch = *itr;
+			// according to the users key hits change the direction if needed
+			switch (ch){
+			case 'i':
+				player2.changeDirection(Direction::UP);
+				break;
+			case 'w':
+				player1.changeDirection(Direction::UP);
+				break;
+			case 'j':
+				player2.changeDirection(Direction::LEFT);
+				break;
+			case 'a':
+				player1.changeDirection(Direction::LEFT);
+				break;
+			case 'm':
+				player2.changeDirection(Direction::DOWN);
+				break;
+			case 'x':
+				player1.changeDirection(Direction::DOWN);
+				break;
+			case 'l':
+				player2.changeDirection(Direction::RIGHT);
+				break;
+			case 'd':
+				player1.changeDirection(Direction::RIGHT);
+				break;
+			case 'z':
+				if (player1.getShotsCounter() > 0)
+					playShooting.addShot(player1.getPosition(), player1.getDirection());
+				break;
+			case 'n':
+				if (player2.getShotsCounter() > 0)
+					playShooting.addShot(player2.getPosition(), player2.getDirection());
+				break;
+			default:
+				break;
 			}
-			break;
-		case 'n':
-			int index;
-			if (player2.getShotsCounter() > 0){
-				index = playShooting.addShot(player2.getPosition(), player2.getDirection());
-				playShooting.getShotInArr(index)->shotMove();
-				playShooting.getShotInArr(index)->shotMove();
-				player2.setShotsCounter(player2.getShotsCounter() - 1);
-				stBar.updatePlayerShots(2);
-			}
-			break;
-		default:
-			break;
 		}
-	}
 
-	// check if the player is still alive and according to the direction of its
-	// movment and the position of the oponent player see if the player can move
-	if (player1.isMoveLegal(player2.getPosition()) && player1.isPlayerAlive()){
-		player1.playerErase();
-		player1.playerMove();
-		player1.playerDraw();
+		doSubIteration();
 
-		// check if the player is now eating a number
-		if (myScreen.isNumberExist(player1.getPosition())){
-			if (currentLevel <= 20 || (player1.numMissinValues(currentLevel) == 1)){
+		// check if the player is still alive and according to the direction of its
+		// movment and the position of the oponent player see if the player can move
+		if (player1.isMoveLegal(player2.getPosition()) && player1.isPlayerAlive()){
+			player1.playerErase();
+			player1.playerMove();
+			player1.playerDraw();
+
+			// check if the player is now eating a number
+			if (myScreen.isNumberExist(player1.getPosition()))
 				// check if the number that the player is eating is the sulotion for his "targil"
-				if (!player1.isPlayerDone(myScreen.getNumberInPos(player1.getPosition()))){
-					player1.setLives(player1.getLives() - 1);
-					stBar.updatePlayerLife(1);
-					// if user ran out of lives
-					if (!player1.isPlayerAlive())
-						player1.playerErase();
-				}
-				else{
-					player1.setScore(player1.getScore() + 1);
-				}
+			if (!player1.isPlayerDone(myScreen.getNumberInPos(player1.getPosition()))){
+				player1.setLives(player1.getLives() - 1);
+				stBar.updatePlayerLife(1);
+				// if user ran out of lives
+				if (!player1.isPlayerAlive())
+					player1.playerErase();
 			}
-			else if (player1.numMissinValues(currentLevel) == 2){
-				if (!player1.isPossibleSulotion(myScreen.getNumberInPos(player1.getPosition()))){
-					player1.setLives(player1.getLives() - 1);
-					stBar.updatePlayerLife(1);
-					// if user ran out of lives
-					if (!player1.isPlayerAlive())
-						player1.playerErase();
-				}
-				else{
-					stBar.updatePlayerExercise(1);
-				}
+			else{
+				player1.setScore(player1.getScore() + 1);
 			}
+
 		}
 
-	}
+		// check if the player is still alive and according to the direction of its
+		// movment and the position of the oponent player see if the player can move
+		if (player2.isMoveLegal(player1.getPosition()) && player2.isPlayerAlive()){
+			player2.playerErase();
+			player2.playerMove();
+			player2.playerDraw();
 
-	// check if the player is still alive and according to the direction of its
-	// movment and the position of the oponent player see if the player can move
-	if (player2.isMoveLegal(player1.getPosition()) && player2.isPlayerAlive()){
-		player2.playerErase();
-		player2.playerMove();
-		player2.playerDraw();
-
-		// check if the player is now eating a number
-		if (myScreen.isNumberExist(player2.getPosition())){
-			if (currentLevel <= 20 || (player2.numMissinValues(currentLevel) == 1)){
+			// check if the player is now eating a number
+			if (myScreen.isNumberExist(player2.getPosition()))
 				// check if the number that the player is eating is the sulotion for his "targil"
-				if (!player2.isPlayerDone(myScreen.getNumberInPos(player2.getPosition()))){
-					player2.setLives(player2.getLives() - 1);
-					stBar.updatePlayerLife(2);
-					// if user ran out of lives
-					if (!player2.isPlayerAlive())
-						player2.playerErase();
-				}
-				else{
-					player2.setScore(player2.getScore() + 1);
-				}
+			if (!player2.isPlayerDone(myScreen.getNumberInPos(player2.getPosition()))){
+				player2.setLives(player2.getLives() - 1);
+				stBar.updatePlayerLife(2);
+				// if user ran out of lives
+				if (!player2.isPlayerAlive())
+					player2.playerErase();
 			}
-			else if (player2.numMissinValues(currentLevel) == 2){
-				if (!player2.isPossibleSulotion(myScreen.getNumberInPos(player2.getPosition()))){
-					player2.setLives(player2.getLives() - 1);
-					stBar.updatePlayerLife(2);
-					// if user ran out of lives
-					if (!player2.isPlayerAlive())
-						player2.playerErase();
-				}
-				else{
-					stBar.updatePlayerExercise(2);
-				}
+			else{
+				player2.setScore(player2.getScore() + 1);
 			}
-		}
 
+		}
 	}
 }
 
@@ -352,16 +282,20 @@ void TheMathGame::doSubIteration()
 	{
 		for (unsigned int i = 0; i < playShooting.getSize(); i++)
 		{
+			playShooting.getShotInArr(i)->shotMove();
+
+			Point shotCurrPos = playShooting.getShotInArr(i)->getPosition();
 			Point shotNextPos = playShooting.getShotInArr(i)->shotNextPos();
 
 			//check if a shot is now "eating" a number
-			if (myScreen.isNumberExist(shotNextPos))
+			if (myScreen.isNumberExist(shotCurrPos))
 			{
-				myScreen.getNumberInPos(shotNextPos);
+				myScreen.getNumberInPos(shotCurrPos);
 				playShooting.delShot(i);
 			}
+
 			//check if a shot is "eating" Player1
-			else if ((player1.getPosition().comparePoints(shotNextPos)) || 
+			if ((player1.getPosition().comparePoints(shotNextPos))||
 				(player1.playerNextPos().comparePoints(shotNextPos)))
 			{
 				player1.setLives(player1.getLives() - 1);
@@ -376,8 +310,10 @@ void TheMathGame::doSubIteration()
 					player1.setPosition(Point(10, 9));
 				}	
 			}
+
+
 			//check if a shot is "eating" Player2
-			else if ((player2.getPosition().comparePoints(shotNextPos)) ||
+			if (player2.getPosition().comparePoints(shotNextPos)||
 				(player2.playerNextPos().comparePoints(shotNextPos)))
 			{
 				player2.setLives(player2.getLives() - 1);
@@ -393,9 +329,6 @@ void TheMathGame::doSubIteration()
 				}
 					
 			}
-			else
-				playShooting.getShotInArr(i)->shotMove();
-
 		}
 	}
 }

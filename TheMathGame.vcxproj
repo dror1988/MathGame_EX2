@@ -90,6 +90,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="screenMatrix.h" />
+    <ClInclude Include="Shot.h" />
+    <ClInclude Include="shotsArray.h" />
     <ClInclude Include="StatusBar.h" />
     <ClInclude Include="TheMathGame.h" />
   </ItemGroup>
@@ -102,6 +104,8 @@
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="screenMatrix.cpp" />
+    <ClCompile Include="Shot.cpp" />
+    <ClCompile Include="shotsArray.cpp" />
     <ClCompile Include="StatusBar.cpp" />
     <ClCompile Include="TheMathGame.cpp" />
   </ItemGroup>

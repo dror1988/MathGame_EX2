@@ -409,7 +409,7 @@ char GameManager::doLevelIterations()
 bool GameManager::doIteration()
 {
 	unsigned int sleepLength = clockCycleInMillisec/iterationsPerClockCycle;
-	for(unsigned int i=0; i<iterationsPerClockCycle-1; ++i) {
+	for(unsigned int i=0; i<iterationsPerClockCycle; ++i) {
 		Sleep(sleepLength);
 		actualGame.doSubIteration();
 	}
