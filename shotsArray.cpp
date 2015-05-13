@@ -87,3 +87,4 @@ void shotsArray::swap(Shot* &a, Shot* &b)
 	a = b;
 	b = tmp;
 }
+
