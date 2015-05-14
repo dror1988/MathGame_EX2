@@ -1,5 +1,30 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// shotArray.h
+// -----------
+// This file declares a class to manage the creation, addition to and deletion of shots array
+//
+// Author: Maya Bugana
+// First version: 2015-05-10
+// 
+// This code is part of a solution for "the math game" excercise in C++ course, Semester B 2015
+// at the Academic College of Tel-Aviv-Yaffo.
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Changes and additions:
+// ------------------------
+// DATE           Authors                 Change / Addition
+// ----           --------                -----------------
+// 2015-04-10    Maya Bugana     implemented the shotArray class
+// 2015-04-13	 Dror Mpyal      Adding functions
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX2, author=Maya Bugana, date=2015-04-10
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+
 #include "shotsArray.h"
 
+//===================================
+// shotsArray constructor
+//===================================
 shotsArray::shotsArray()
 {
 	for (unsigned int i = 0; i < size; i++)
@@ -8,6 +33,9 @@ shotsArray::shotsArray()
 	size = 0;
 }
 
+//===================================
+// shotsArray destructor
+//===================================
 shotsArray::~shotsArray()
 {
 	for (unsigned int i = 0; i < size; i++)
@@ -18,6 +46,9 @@ shotsArray::~shotsArray()
 	size = 0;
 }
 
+//===================================
+// inits the array
+//===================================
 void shotsArray::initArr(){
 	for (unsigned int i = 0; i < size; i++)
 	{
@@ -28,27 +59,42 @@ void shotsArray::initArr(){
 	size = 0;
 }
 
+//===================================
+// print all shts in array
+//===================================
 void shotsArray::printShots() const{
 	for (unsigned int i = 0; i < size; i++)
 		Arr[i]->shotDraw();
 }
 
+//===================================
+// size getter
+//===================================
 unsigned int shotsArray::getSize()
 {
 	return size;
 }
 
+//===================================
+// returns a shot in a specific index
+//===================================
 Shot* shotsArray::getShotInArr(int i)
 {
 	return Arr[i];
 }
 
+//===================================
+// size setter
+//===================================
 unsigned int  shotsArray::setSize(unsigned int newSize)
 {
 	size = newSize;
 	return size;
 }
 
+//===================================
+// manage the movements of all shots in array
+//===================================
 void shotsArray::move()
 {
 	if (size != 0)
@@ -63,6 +109,9 @@ void shotsArray::move()
 	}
 }
 
+//===================================
+// add new shot to shotsArray
+//===================================
 int shotsArray::addShot(Point shotPosition, Direction::VALUE shotDirection)
 {	
 	Arr[size] = new Shot(shotPosition, shotDirection);
@@ -70,6 +119,9 @@ int shotsArray::addShot(Point shotPosition, Direction::VALUE shotDirection)
 	return size - 1;
 }
 
+//===================================
+// delete shot in a specific index
+//===================================
 void shotsArray::delShot(int i)
 {
 	Arr[i]->shotErase();
@@ -80,6 +132,9 @@ void shotsArray::delShot(int i)
 	--size;
 }
 
+//===================================
+// swap between 2 shots
+//===================================
 void shotsArray::swap(Shot* &a, Shot* &b)
 {
 	Shot* tmp;
@@ -88,3 +143,6 @@ void shotsArray::swap(Shot* &a, Shot* &b)
 	b = tmp;
 }
 
+//+++++++++++++++++++++
+// END of NEW CODE EX2
+//+++++++++++++++++++++
