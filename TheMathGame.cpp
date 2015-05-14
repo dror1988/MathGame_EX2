@@ -14,6 +14,8 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-11     Dror Moyal      implemented the TheMathGame class
+// 2015-05-12	  Maya Bugana	  Add Shootings in subIteration
+// 2015-05-13     Dror Moyal      Adding logic and fix bugs
 
 // In the file itself, add above each change/addition a remark saying: "NEW CODE EX1, author=<name>, date=<YYYY-MM-DD>"
 // and close it at the end with a remark saying "END of NEW CODE EX1" 
@@ -241,7 +243,7 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			player1.changeDirection(Direction::RIGHT);
 			break;
 		case 'z':
-			if (player1.getShotsCounter() > 0){
+			if ((player1.getShotsCounter() > 0) && player1.isPlayerAlive()){
 				int index;
 				index=playShooting.addShot(player1.getPosition(), player1.getDirection());
 				playShooting.getShotInArr(index)->shotMove(); 
@@ -252,7 +254,7 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			break;
 		case 'n':
 			int index;
-			if (player2.getShotsCounter() > 0){
+			if ((player2.getShotsCounter() > 0) && player2.isPlayerAlive()){
 				index = playShooting.addShot(player2.getPosition(), player2.getDirection());
 				playShooting.getShotInArr(index)->shotMove();
 				playShooting.getShotInArr(index)->shotMove();
@@ -346,6 +348,10 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 // END of NEW CODE EX1
 //+++++++++++++++++++++
 
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX2, author=Maya Bugana, date=2015-05-12
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+
 void TheMathGame::doSubIteration()
 {
 	if (playShooting.getSize() > 0)
@@ -400,3 +406,6 @@ void TheMathGame::doSubIteration()
 	}
 }
 
+//+++++++++++++++++++++
+// END of NEW CODE EX2
+//+++++++++++++++++++++
