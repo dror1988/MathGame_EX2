@@ -75,12 +75,16 @@ public:
 	//update time left value
 	void updateTimeLeft();
 
-	//new code EX2
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	//update the player life amount
 	void updatePlayerExercise(unsigned int playerNumber);
 	//update the player life amount
 	void updatePlayerShots(unsigned int playerNumber);
-	//end new code EX2
+	//+++++++++++++++++++++
+	// END of NEW CODE EX2
+	//+++++++++++++++++++++
 };
 
 #endif

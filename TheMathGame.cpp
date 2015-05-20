@@ -135,7 +135,9 @@ void TheMathGame::startLevel(int level){
 	player1.setLives(3);
 	player1.setPosition(Point(10, 9));
 	player1.changeDirection(Direction::RIGHT);
-
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	if (currentLevel >= 1 && currentLevel < 20){
 		player1.resetExercise();
 		player1.createExercise(currentLevel);
@@ -148,7 +150,9 @@ void TheMathGame::startLevel(int level){
 		player1.resetAdvExercise();
 		player1.createAdvExercise(currentLevel);
 	}
-
+	//+++++++++++++++++++++
+	// END of NEW CODE EX2
+	//+++++++++++++++++++++
 	player1.resetPlayerAlive();
 	player1.resetPlayerDone();
 	player1.setShotsCounter(5);
@@ -157,7 +161,9 @@ void TheMathGame::startLevel(int level){
 	player2.setLives(3);
 	player2.setPosition(Point(70, 9));
 	player2.changeDirection(Direction::LEFT);
-
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	if (currentLevel >= 1 && currentLevel < 20){
 		player2.resetExercise();
 		player2.createExercise(currentLevel);
@@ -170,7 +176,9 @@ void TheMathGame::startLevel(int level){
 		player2.resetAdvExercise();
 		player2.createAdvExercise(currentLevel);
 	}
-
+	//+++++++++++++++++++++
+	// END of NEW CODE EX2
+	//+++++++++++++++++++++
 	player2.resetPlayerAlive();
 	player2.resetPlayerDone();
 	player2.setShotsCounter(5);
@@ -201,6 +209,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		stBar.decTimeLeft();
 		stBar.updateTimeLeft();
 
+		// +++++++++++++++++++++++++++++++++++++++++++++++++
+		// "NEW CODE EX2, author=Maya Bugana, date=2015-05-12
+		// +++++++++++++++++++++++++++++++++++++++++++++++++
 		//adding shots to the player every 200 clocks cycles
 		if (clockTicksCurrentLevel % 200 == 0){
 			player1.setShotsCounter(player1.getShotsCounter() + 1);
@@ -208,6 +219,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			player2.setShotsCounter(player2.getShotsCounter() + 1);
 			stBar.updatePlayerShots(2);
 		}
+		//+++++++++++++++++++++
+		// END of NEW CODE EX2
+		//+++++++++++++++++++++
 
 		// create a number each second instaed of each 200ms, if successful print to screen
 		myScreen.createNumber(currentLevel);
@@ -242,6 +256,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		case 'd':
 			player1.changeDirection(Direction::RIGHT);
 			break;
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
+			// "NEW CODE EX2, author=Maya Bugana, date=2015-05-12
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
 		case 'z':
 			if ((player1.getShotsCounter() > 0) && player1.isPlayerAlive()){
 				int index;
@@ -262,6 +279,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 				stBar.updatePlayerShots(2);
 			}
 			break;
+			//+++++++++++++++++++++
+			// END of NEW CODE EX2
+			//+++++++++++++++++++++
 		default:
 			break;
 		}
@@ -269,7 +289,7 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 
 	// check if the player is still alive and according to the direction of its
 	// movment and the position of the oponent player see if the player can move
-	if (player1.isMoveLegal(player2.getPosition()) && player1.isPlayerAlive()){
+	if (player1.isPlayerAlive() && player1.isMoveLegal(player2.getPosition())){
 		player1.playerErase();
 		player1.playerMove();
 		player1.playerDraw();
@@ -289,6 +309,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player1.setScore(player1.getScore() + 1);
 				}
 			}
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
+			// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
 			else if (player1.numMissinValues(currentLevel) == 2){
 				if (!player1.isPossibleSulotion(myScreen.getNumberInPos(player1.getPosition()))){
 					player1.setLives(player1.getLives() - 1);
@@ -300,6 +323,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 				else{
 					stBar.updatePlayerExercise(1);
 				}
+				//+++++++++++++++++++++
+				// END of NEW CODE EX2
+				//+++++++++++++++++++++
 			}
 		}
 
@@ -307,7 +333,7 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 
 	// check if the player is still alive and according to the direction of its
 	// movment and the position of the oponent player see if the player can move
-	if (player2.isMoveLegal(player1.getPosition()) && player2.isPlayerAlive()){
+	if (player2.isPlayerAlive() && player2.isMoveLegal(player1.getPosition())){
 		player2.playerErase();
 		player2.playerMove();
 		player2.playerDraw();
@@ -327,6 +353,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player2.setScore(player2.getScore() + 1);
 				}
 			}
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
+			// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+			// +++++++++++++++++++++++++++++++++++++++++++++++++
 			else if (player2.numMissinValues(currentLevel) == 2){
 				if (!player2.isPossibleSulotion(myScreen.getNumberInPos(player2.getPosition()))){
 					player2.setLives(player2.getLives() - 1);
@@ -338,6 +367,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 				else{
 					stBar.updatePlayerExercise(2);
 				}
+				//+++++++++++++++++++++
+				// END of NEW CODE EX2
+				//+++++++++++++++++++++
 			}
 		}
 

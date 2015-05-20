@@ -48,7 +48,6 @@ class AdvExercise{
 	const static unsigned int EMPTY_CELL = 10001;
 	const static unsigned int MIN_NUM = 1;
 	const static unsigned int MAX_NUM = 21;
-
 public:
 	// exercise constructor
 	AdvExercise(unsigned int currentLvl);

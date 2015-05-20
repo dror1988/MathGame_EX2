@@ -56,10 +56,13 @@ public:
 	// END of NEW CODE EX1
 	//+++++++++++++++++++++
 
-
-	//ne code ex2
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	const static unsigned int MAX_LEVEL = 40;
-	//new code ex2
+	//+++++++++++++++++++++
+	// END of NEW CODE EX2
+	//+++++++++++++++++++++
 
 };
 

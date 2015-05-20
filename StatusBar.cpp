@@ -88,7 +88,10 @@ void StatusBar::updateTimeLeft(){
 }
 
 
-//new code EX2
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+
 //===================================
 //updates and prints player exercise
 //===================================
@@ -120,7 +123,9 @@ void StatusBar::updatePlayerShots(unsigned int playerNumber){
 	}
 	setTextColor(WHITE);
 }
-//end new code EX2
+//+++++++++++++++++++++
+// END of NEW CODE EX2
+//+++++++++++++++++++++
 
 //+++++++++++++++++++++
 // END of NEW CODE EX1

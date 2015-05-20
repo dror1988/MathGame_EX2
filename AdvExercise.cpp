@@ -21,6 +21,10 @@
 
 #include "AdvExercise.h"
 
+//===================================
+// Function that set the to lowest 
+// numbers to EMPTY_CELL
+//===================================
 void AdvExercise::resetMinNubers() {
 	unsigned int minNum = 0;
 
@@ -42,6 +46,10 @@ void AdvExercise::resetMinNubers() {
 
 }
 
+//===================================
+// Function that creates the advanced 
+// exercise string
+//===================================
 void AdvExercise::createAdvExerciseString(){
 	// place to store itoa_s result
 	char strNumber[5]="";
@@ -72,6 +80,10 @@ void AdvExercise::createAdvExerciseString(){
 	}
 }
 
+//===================================
+// Function that verifies if a given
+// number is a possible solution
+//===================================
 bool AdvExercise::checkIfPossible(unsigned int tryNum) const {
 	double tmpArr[4];
 	int varIndex=0;
@@ -248,6 +260,10 @@ bool AdvExercise::checkIfPossible(unsigned int tryNum) const {
 				return false;
 }
 
+//===================================
+// Function that verifies if a given
+// number completes the exercise
+//===================================
 bool AdvExercise::checkIfComplete(unsigned int tryNum) const{
 	int varIndex = 0;
 	//double result;
