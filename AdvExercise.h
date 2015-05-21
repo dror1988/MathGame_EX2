@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-05-09     Dror Moyal      implemented the AdvExecise class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #ifndef __ADV_EXERCISE_H
 #define __ADV_EXERCISE_H
 
@@ -63,7 +59,3 @@ public:
 };
 
 #endif
-
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++

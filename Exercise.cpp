@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-07     Dror Moyal      implemented the Execise class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-07
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #include "Exercise.h"
 
 //==========================================================
@@ -142,6 +138,3 @@ bool Exercise::isExerciseComplete(unsigned int tryNum){
 		return false;
 }
 
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

@@ -15,11 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-11     Dror Moyal      implemented the StatusBar class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-11
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 #ifndef __STATUS_BAR_H
 #define __STATUS_BAR_H
 
@@ -75,20 +70,10 @@ public:
 	//update time left value
 	void updateTimeLeft();
 
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	//update the player life amount
 	void updatePlayerExercise(unsigned int playerNumber);
 	//update the player life amount
 	void updatePlayerShots(unsigned int playerNumber);
-	//+++++++++++++++++++++
-	// END of NEW CODE EX2
-	//+++++++++++++++++++++
 };
 
 #endif
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

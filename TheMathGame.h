@@ -14,9 +14,6 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-11     Dror Moyal      implemented the TheMathGame class
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-08
-// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "io_utils.h"
 #include "screenMatrix.h"
@@ -35,13 +32,7 @@ class TheMathGame : public ISpecificGame
 	unsigned int currentLevel;
 	screenMatrix myScreen;
 	StatusBar stBar;
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX2, author=Maya Bugana, date=2015-04-10
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	unsigned int clockTicksCurrentLevel;
-	//+++++++++++++++++++++
-	// END of NEW CODE EX2
-	//+++++++++++++++++++++
 	shotsArray playShooting;
 	// const variables
 	const static unsigned int CLOCK_TICKS_PER_LEVEL = 1500;
@@ -96,8 +87,3 @@ public:
 	virtual void doSubIteration();
 
 };
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++
-

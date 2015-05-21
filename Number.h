@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the screenMatrix class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #ifndef __NUMBER_H
 #define __NUMBER_H
 
@@ -73,7 +69,3 @@ public:
 
 
 #endif
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

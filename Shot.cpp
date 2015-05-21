@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the Shot class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #include "Shot.h"
 
 
@@ -133,7 +129,3 @@ void Shot::shotMove()
 	shotSetPos();
 	shotDraw();
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++

@@ -60,16 +60,10 @@ private:
 	bool doIteration();
 	bool doInputIteration();
 
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-09
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	void chooseLevelToStart();
 	void printInstructions() const;
 	void subMenu() const;
 	void clearSubMenu() const;
-	//+++++++++++++++++++++
-	// END of NEW CODE EX1
-	//+++++++++++++++++++++
 
 public:
 	class MainMenuOptions

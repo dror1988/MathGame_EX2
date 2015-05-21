@@ -16,10 +16,6 @@
 // 2015-04-10    Maya Bugana     implemented the shotArray class
 // 2015-04-13	 Dror Mpyal      Adding functions
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #ifndef _SHOTS_ARRAY_H
 #define _SHOTS_ARRAY_H
 
@@ -63,7 +59,3 @@ public:
 };
 
 #endif
-
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++

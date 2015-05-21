@@ -16,10 +16,6 @@
 // 2015-04-10    Maya Bugana     implemented the shotArray class
 // 2015-04-13	 Dror Moyal      Adding functions
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #include "shotsArray.h"
 
 //===================================
@@ -142,7 +138,3 @@ void shotsArray::swap(Shot* &a, Shot* &b)
 	a = b;
 	b = tmp;
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++

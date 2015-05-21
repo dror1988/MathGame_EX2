@@ -15,9 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the screenMatrix class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "screenMatrix.h"
 
@@ -211,8 +208,3 @@ unsigned int screenMatrix::getNumberInPos(Point numberPosition){
 		}
 	}
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++
-

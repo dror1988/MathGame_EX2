@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the Number class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Maya Bugana, date=2015-04-10
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 
 #include "Number.h"
 #include "io_utils.h"
@@ -90,7 +86,3 @@ void Number::Print(){
 	gotoxy(numberPosition.x, numberPosition.y);
 	cout << Num << endl;
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

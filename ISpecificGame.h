@@ -47,23 +47,9 @@ public:
 	virtual void doIteration(const list<char>& keyHits)=0;
 	virtual void doSubIteration()=0;
 
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-12
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	virtual void printCurrentScreen() = 0;
 	virtual void resetAll() = 0;
-	//+++++++++++++++++++++
-	// END of NEW CODE EX1
-	//+++++++++++++++++++++
-
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	const static unsigned int MAX_LEVEL = 40;
-	//+++++++++++++++++++++
-	// END of NEW CODE EX2
-	//+++++++++++++++++++++
-
 };
 
 #endif

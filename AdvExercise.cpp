@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-05-09    Dror Moyal      implemented the AdvExecise class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #include "AdvExercise.h"
 
 //===================================
@@ -637,7 +633,3 @@ bool AdvExercise::isAdvExerciseComplete(unsigned int tryNum){
 unsigned int AdvExercise::getMissingVars(){
 	return missingVars;
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++

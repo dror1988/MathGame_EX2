@@ -15,11 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-11     Dror Moyal      implemented the status bar class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-11
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 #include "StatusBar.h"
 
 void StatusBar::drawStatusBar(){
@@ -87,11 +82,6 @@ void StatusBar::updateTimeLeft(){
 	setTextColor(WHITE);
 }
 
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX2, author=Dror Moyal, date=2015-05-09
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 //===================================
 //updates and prints player exercise
 //===================================
@@ -123,10 +113,3 @@ void StatusBar::updatePlayerShots(unsigned int playerNumber){
 	}
 	setTextColor(WHITE);
 }
-//+++++++++++++++++++++
-// END of NEW CODE EX2
-//+++++++++++++++++++++
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

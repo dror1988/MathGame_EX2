@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-08     Dror Moyal      implemented the Player class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-08
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #include "Player.h"
 
 //===================================
@@ -64,6 +60,16 @@ string Player::getExercise()const{
 		return playerExercise->getExercise();
 	else
 		return "";
+}
+
+//===================================
+// return how many missing values
+//===================================
+int Player::numMissinValues(int currentLevel)const{
+	if (currentLevel <= 20)
+		return -1;
+	else
+		return playerAdvExercise->getMissingVars();
 }
 
 //===================================
@@ -130,10 +136,6 @@ bool Player::isPlayerAlive(){
 	return playerAlive;
 }
 
-//==================================
-// NEW CODE EX2
-//==================================
-
 //===================================
 // advance exercise getter
 //===================================
@@ -175,10 +177,6 @@ bool Player::isPlayerDone(unsigned int eatenNumber){
 bool Player::isPossibleSulotion(unsigned int eatenNumber){
 	return playerAdvExercise->isPossibleSolution(eatenNumber);
 }
-
-//==================================
-// END NEW CODE EX2
-//==================================
 
 //===================================
 // player done getter
@@ -303,7 +301,3 @@ Point Player::playerNextPos()
 	tmp.playerMove();
 	return tmp.getPosition();
 }
-
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++

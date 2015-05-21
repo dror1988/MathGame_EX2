@@ -24,9 +24,6 @@
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-09
-// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include <list>
 #include "GameManager.h"
@@ -268,10 +265,6 @@ void GameManager::chooseLevelToStart(){
 	clear_screen();
 }
 
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++
-
 bool GameManager::playGame()
 {
 	clear_screen();
@@ -289,11 +282,7 @@ bool GameManager::playGame()
 	//-------------------------------------------------------------
 	// END of game LEVELS loop
 	//-------------------------------------------------------------
-	
 
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-09
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 	if (!actualGame.hasNextLevel()){
 		actualGame.resetAll();
@@ -304,10 +293,6 @@ bool GameManager::playGame()
 		setTextColor(WHITE);
 		_getch();
 	}
-
-	//+++++++++++++++++++++
-	// END of NEW CODE EX1
-	//+++++++++++++++++++++
 
 	// return true if the user wants to keep playing
 	return (action != GameManager::LevelOptions::EXIT_APPLICATION);
@@ -386,10 +371,6 @@ char GameManager::doLevelIterations()
 		_getch();
 		action = GameManager::LevelOptions::NEXT_LEVEL;
 	}
-
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-09
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	else if(escapePressed) {
 		action = 0;
 		subMenu();
@@ -398,9 +379,6 @@ char GameManager::doLevelIterations()
 		} while(!GameManager::LevelOptions::isValidOption(action));
 	}
 	clearSubMenu();
-	//+++++++++++++++++++++
-	// END of NEW CODE EX1
-	//+++++++++++++++++++++
 	// end of esc pressed
 
 	return action;

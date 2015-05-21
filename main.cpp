@@ -43,18 +43,10 @@ int main(){
 	clear_screen();
 	hideCursor();
 
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-	// "NEW CODE EX1, author=Dror Moyal, date=2015-04-13
-	// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 	TheMathGame MyGame;
 	srand((unsigned int)time(NULL));
 
 	GameManager(MyGame, (unsigned int)200, (unsigned int)2).run();
-
-	//+++++++++++++++++++++
-	// END of NEW CODE EX1
-	//+++++++++++++++++++++
 
 	return 0;
 }

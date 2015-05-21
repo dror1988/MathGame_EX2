@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-08     Dror Moyal      implemented the Player class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-08
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #ifndef _PLAYER_H
 #define _PLAYER_H
 
@@ -59,14 +55,7 @@ public:
 		playerPosition(playerPosition), playerExercise(NULL), playerAdvExercise(NULL){
 	}
 	// player destructor
-	~Player(){
-		// if player has an exercise, release it
-		if (playerExercise != NULL)
-			delete playerExercise;
-		// if player has an advance exercise, release it
-		if (playerAdvExercise != NULL)
-			delete playerAdvExercise;
-	}
+	~Player();
 
 	// score getter
 	unsigned int getScore()const;
@@ -80,36 +69,16 @@ public:
 	Direction::VALUE getDirection()const;
 	// exercise getter
 	string getExercise()const;
-
-	//=============
-	//NEW CODE EX2
-	//=============
-	int numMissinValues(int currentLevel)const{
-		if (currentLevel <= 20)
-			return -1;
-		else
-			return playerAdvExercise->getMissingVars();
-	}
+	// return how many missing values in exercise
+	int numMissinValues(int currentLevel)const;
 	// advance exercise getter
 	string getAdvExercise()const;
 	// exercise creator
 	AdvExercise* createAdvExercise(int currentLevel);
+	// check if a sulotion is possible
 	bool isPossibleSulotion(unsigned int eatenNumber);
-	//===========================
-	// delete old exercise and
-	// create a new one
-	//===========================
-	void resetAdvExercise(){
-		// if there is an exercise 
-		if (playerAdvExercise != NULL){
-			delete playerAdvExercise;
-			playerAdvExercise = NULL;
-		}
-	}
-	//=============
-	//END NEW CODE EX2
-	//=============
-
+	// reset advance exercise
+	inline void resetAdvExercise();
 	// score setter
 	unsigned int setScore(unsigned int newScore);
 	// lives setter
@@ -122,49 +91,81 @@ public:
 	Direction::VALUE changeDirection(Direction::VALUE newDirection);
 	// exercise creator
 	Exercise* createExercise(int currentLevel);
-
-
-	//===========================
-	// delete old exercise and
-	// create a new one
-	//===========================
-	void resetExercise(){
-		// if there is an exercise 
-		if (playerExercise!=NULL){
-			delete playerExercise;
-			playerExercise=NULL;
-		}
-	}
+	// reset exercise
+	inline void resetExercise();
 	// verify if player is alive according to the number
 	// of lives he has left
 	bool isPlayerAlive();
 	// reset the value of player alive
-	void resetPlayerAlive(){
-		playerAlive=true;
-	}
+	inline void resetPlayerAlive();
 	// verify if a player is done according to the
 	// number he ate
 	bool isPlayerDone(unsigned int eatenNumber);
 	// player done getter
 	bool getPlayerDone();
 	// reset the value of player done
-	void resetPlayerDone(){
-		playerDone=false;
-	}
+	inline void resetPlayerDone();
 	// print a player in his position on screen
 	void playerDraw()const;
 	// erase a player from his position on screen
 	void playerErase()const;
-	
 	// computes the movement of a player according to the players direction
 	void playerMove();
 	// verify if a move is legal according to the other players position
 	bool isMoveLegal(Point otherPlayerPos);
+	// return the players position after a move
 	Point playerNextPos();
 };
 
 #endif
 
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++
+//===========================
+// player destructor
+//===========================
+Player::~Player{
+	// if player has an exercise, release it
+	if (playerExercise != NULL)
+	delete playerExercise;
+	// if player has an advance exercise, release it
+	if (playerAdvExercise != NULL)
+		delete playerAdvExercise;
+}
+
+//===========================
+// delete old exercise and
+// create a new one
+//===========================
+void Player::resetAdvExercise(){
+	// if there is an exercise 
+	if (playerAdvExercise != NULL){
+		delete playerAdvExercise;
+		playerAdvExercise = NULL;
+	}
+}
+
+
+//===========================
+// delete old exercise and
+// create a new one
+//===========================
+void Player::resetExercise(){
+	// if there is an exercise 
+	if (playerExercise != NULL){
+		delete playerExercise;
+		playerExercise = NULL;
+	}
+}
+
+//==========================
+// reset the player alive
+//==========================
+void Player::resetPlayerAlive(){
+	playerAlive = true;
+}
+
+//==========================
+// reset the player done
+//==========================
+void Player::resetPlayerDone(){
+	playerDone = false;
+}

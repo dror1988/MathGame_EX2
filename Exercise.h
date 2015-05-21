@@ -15,10 +15,6 @@
 // ----           --------                -----------------
 // 2015-04-07     Dror Moyal      implemented the Execise class
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-// "NEW CODE EX1, author=Dror Moyal, date=2015-04-07
-// +++++++++++++++++++++++++++++++++++++++++++++++++
-
 #ifndef __EXERCISE_H
 #define __EXERCISE_H
 
@@ -52,6 +48,3 @@ public:
 
 #endif
 
-//+++++++++++++++++++++
-// END of NEW CODE EX1
-//+++++++++++++++++++++
