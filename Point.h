@@ -44,11 +44,23 @@ public:
 		x = (rand() % 80);
 		y = (rand() % 21 + 3);
 	}
+
+	Point& operator=(const Point& p){
+		if (this != &p){
+			this->x = p.x;
+			this->y = p.y;
+		}
+		return *this;
+	}
+
+	bool operator==(const Point& p){
+		return (this->x == p.x && this->y == p.y);
+	}
 	
 	//Compare point x and y values
 	bool comparePoints(Point const &otherPoint){
 		return (x == otherPoint.x && y == otherPoint.y);
-	}
+	} 
 };
 
 #endif

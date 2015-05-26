@@ -86,6 +86,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="io_utils.h" />
     <ClInclude Include="ISpecificGame.h" />
+    <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
@@ -101,6 +102,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="io_utils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="screenMatrix.cpp" />

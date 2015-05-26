@@ -350,8 +350,8 @@ void TheMathGame::doSubIteration()
 				playShooting.delShot(i);
 			}
 			//check if a shot is "eating" Player1
-			else if ((player1.getPosition().comparePoints(shotNextPos)) || 
-				(player1.playerNextPos().comparePoints(shotNextPos)))
+			else if ((player1.getPosition()==shotNextPos) ||
+				(player1.playerNextPos()==shotNextPos))
 			{
 				player1.setLives(player1.getLives() - 1);
 				stBar.updatePlayerLife(1);
@@ -366,8 +366,8 @@ void TheMathGame::doSubIteration()
 				}	
 			}
 			//check if a shot is "eating" Player2
-			else if ((player2.getPosition().comparePoints(shotNextPos)) ||
-				(player2.playerNextPos().comparePoints(shotNextPos)))
+			else if ((player2.getPosition()==shotNextPos) ||
+				(player2.playerNextPos()==shotNextPos))
 			{
 				player2.setLives(player2.getLives() - 1);
 				stBar.updatePlayerLife(2);

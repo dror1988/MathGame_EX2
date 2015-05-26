@@ -17,6 +17,57 @@
 
 #include "Player.h"
 
+//===========================
+// player destructor
+//===========================
+Player::~Player(){
+	// if player has an exercise, release it
+	if (playerExercise != NULL)
+	delete playerExercise;
+	// if player has an advance exercise, release it
+	if (playerAdvExercise != NULL)
+		delete playerAdvExercise;
+}
+
+//===========================
+// delete old exercise and
+// create a new one
+//===========================
+void Player::resetAdvExercise(){
+	// if there is an exercise 
+	if (playerAdvExercise != NULL){
+		delete playerAdvExercise;
+		playerAdvExercise = NULL;
+	}
+}
+
+
+//===========================
+// delete old exercise and
+// create a new one
+//===========================
+void Player::resetExercise(){
+	// if there is an exercise 
+	if (playerExercise != NULL){
+		delete playerExercise;
+		playerExercise = NULL;
+	}
+}
+
+//==========================
+// reset the player alive
+//==========================
+void Player::resetPlayerAlive(){
+	playerAlive = true;
+}
+
+//==========================
+// reset the player done
+//==========================
+void Player::resetPlayerDone(){
+	playerDone = false;
+}
+
 //===================================
 // score getter
 //===================================
@@ -287,7 +338,8 @@ bool Player::isMoveLegal(Point otherPlayerPos){
 	// if the new position of the player is not in the
 	// same position as the other player then the move
 	// is legal
-	if (tempPoint.x == otherPlayerPos.x && tempPoint.y == otherPlayerPos.y)
+	//if (tempPoint.x == otherPlayerPos.x && tempPoint.y == otherPlayerPos.y)
+	if (tempPoint == otherPlayerPos)
 		return false;
 	else
 		return true;

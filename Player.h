@@ -78,7 +78,7 @@ public:
 	// check if a sulotion is possible
 	bool isPossibleSulotion(unsigned int eatenNumber);
 	// reset advance exercise
-	inline void resetAdvExercise();
+	void resetAdvExercise();
 	// score setter
 	unsigned int setScore(unsigned int newScore);
 	// lives setter
@@ -92,19 +92,19 @@ public:
 	// exercise creator
 	Exercise* createExercise(int currentLevel);
 	// reset exercise
-	inline void resetExercise();
+	void resetExercise();
 	// verify if player is alive according to the number
 	// of lives he has left
 	bool isPlayerAlive();
 	// reset the value of player alive
-	inline void resetPlayerAlive();
+	void resetPlayerAlive();
 	// verify if a player is done according to the
 	// number he ate
 	bool isPlayerDone(unsigned int eatenNumber);
 	// player done getter
 	bool getPlayerDone();
 	// reset the value of player done
-	inline void resetPlayerDone();
+	void resetPlayerDone();
 	// print a player in his position on screen
 	void playerDraw()const;
 	// erase a player from his position on screen
@@ -118,54 +118,3 @@ public:
 };
 
 #endif
-
-//===========================
-// player destructor
-//===========================
-Player::~Player{
-	// if player has an exercise, release it
-	if (playerExercise != NULL)
-	delete playerExercise;
-	// if player has an advance exercise, release it
-	if (playerAdvExercise != NULL)
-		delete playerAdvExercise;
-}
-
-//===========================
-// delete old exercise and
-// create a new one
-//===========================
-void Player::resetAdvExercise(){
-	// if there is an exercise 
-	if (playerAdvExercise != NULL){
-		delete playerAdvExercise;
-		playerAdvExercise = NULL;
-	}
-}
-
-
-//===========================
-// delete old exercise and
-// create a new one
-//===========================
-void Player::resetExercise(){
-	// if there is an exercise 
-	if (playerExercise != NULL){
-		delete playerExercise;
-		playerExercise = NULL;
-	}
-}
-
-//==========================
-// reset the player alive
-//==========================
-void Player::resetPlayerAlive(){
-	playerAlive = true;
-}
-
-//==========================
-// reset the player done
-//==========================
-void Player::resetPlayerDone(){
-	playerDone = false;
-}
