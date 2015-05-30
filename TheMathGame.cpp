@@ -343,8 +343,6 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 	// movement of RowsFlyerR
 	RowsFlyerR.objMovement();
 	RowsFlyerL.objMovement();
-	ColFlyerUP.objMovement();
-	ColFlyerD.objMovement();
 }
 
 void TheMathGame::doSubIteration()
