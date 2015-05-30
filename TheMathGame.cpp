@@ -176,6 +176,12 @@ void TheMathGame::startLevel(int level){
 
 	// erase all bullets from screen and cleans the array
 	playShooting.initArr();
+
+	//inits all creatures
+	RowsFlyerR.initObject(Direction::RIGHT, Point(30, 23));
+	RowsFlyerL.initObject(Direction::LEFT, Point(50, 15));
+	ColFlyerUP.initObject(Direction::UP, Point(45, 23));
+	ColFlyerD.initObject(Direction::DOWN, Point(55, 15));
 }
 
 //=================================================
@@ -333,18 +339,62 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		}
 
 	}
+
+	// movement of RowsFlyerR
+	RowsFlyerR.objMovement();
+	RowsFlyerL.objMovement();
+	ColFlyerUP.objMovement();
+	ColFlyerD.objMovement();
 }
 
 void TheMathGame::doSubIteration()
 {
+	//Handles cretures colutions with the players
+	RowsFlyerR.coliddedAPlayer(player1, 1, stBar);
+	RowsFlyerR.coliddedAPlayer(player2, 2, stBar);
+	RowsFlyerL.coliddedAPlayer(player1, 1, stBar);
+	RowsFlyerL.coliddedAPlayer(player2, 2, stBar);
+	ColFlyerUP.coliddedAPlayer(player1, 1, stBar);
+	ColFlyerUP.coliddedAPlayer(player2, 2, stBar);
+	ColFlyerD.coliddedAPlayer(player1, 1, stBar);
+	ColFlyerD.coliddedAPlayer(player2, 2, stBar);
+
+	//Handles flying cretures colutions with Numbers
+	if (myScreen.isNumberExist(RowsFlyerR.objNextPos()))
+	{
+		myScreen.getNumberInPos(RowsFlyerR.objNextPos());
+	}
+	else if (myScreen.isNumberExist(RowsFlyerL.objNextPos()))
+	{
+		myScreen.getNumberInPos(RowsFlyerL.objNextPos());
+	}
+	else if (myScreen.isNumberExist(ColFlyerUP.objNextPos()))
+	{
+		myScreen.getNumberInPos(ColFlyerUP.objNextPos());
+	}
+	else if (myScreen.isNumberExist(ColFlyerD.objNextPos()))
+	{
+		myScreen.getNumberInPos(ColFlyerD.objNextPos());
+	}
+
+	//hadle shots movemene if the arr is not empty
 	if (playShooting.getSize() > 0)
 	{
 		for (unsigned int i = 0; i < playShooting.getSize(); i++)
 		{
 			Point shotNextPos = playShooting.getShotInArr(i)->shotNextPos();
+			Point shotPos = playShooting.getShotInArr(i)->getPosition();
+
+			//check if a shot was colidded one of the Moving Objects
+			if (RowsFlyerR.coliddedAShot(shotPos, shotNextPos)|| 
+				RowsFlyerL.coliddedAShot(shotPos, shotNextPos)||
+				ColFlyerUP.coliddedAShot(shotPos, shotNextPos)||
+				ColFlyerD.coliddedAShot(shotPos, shotNextPos)
+				)
+				playShooting.delShot(i);
 
 			//check if a shot is now "eating" a number
-			if (myScreen.isNumberExist(shotNextPos))
+			else if (myScreen.isNumberExist(shotNextPos))
 			{
 				myScreen.getNumberInPos(shotNextPos);
 				playShooting.delShot(i);
@@ -384,7 +434,10 @@ void TheMathGame::doSubIteration()
 			}
 			else
 				playShooting.getShotInArr(i)->shotMove();
-
 		}
 	}
+	RowsFlyerR.objMovement();
+	RowsFlyerL.objMovement();
+	ColFlyerUP.objMovement();
+	ColFlyerD.objMovement();
 }
