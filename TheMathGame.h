@@ -20,6 +20,8 @@
 #include "Player.h"
 #include "StatusBar.h"
 #include "shotsArray.h"
+#include "RowsFlyer.h"
+#include "ColFlyer.h"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -34,6 +36,10 @@ class TheMathGame : public ISpecificGame
 	StatusBar stBar;
 	unsigned int clockTicksCurrentLevel;
 	shotsArray playShooting;
+	RowsFlyer RowsFlyerR;
+	RowsFlyer RowsFlyerL;
+	ColFlyer ColFlyerUP;
+	ColFlyer ColFlyerD;
 	// const variables
 	const static unsigned int CLOCK_TICKS_PER_LEVEL = 1500;
 public:
@@ -43,7 +49,11 @@ public:
 	TheMathGame() :
 		player1('@', Direction::RIGHT, Point(10, 9)),
 		player2('#', Direction::LEFT, Point(70, 9)),
-		currentLevel(0), myScreen(player1, player2), stBar(player1, player2){
+		currentLevel(0), myScreen(player1, player2), stBar(player1, player2),
+		RowsFlyerR(Direction::RIGHT, Point(30, 23)),
+		RowsFlyerL(Direction::LEFT, Point(50, 15)),
+		ColFlyerUP(Direction::UP, Point(45, 23)),
+		ColFlyerD(Direction::DOWN, Point(55, 15)){
 	}
 
 	//=================================================
