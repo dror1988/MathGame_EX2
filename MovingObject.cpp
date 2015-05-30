@@ -48,9 +48,7 @@ Direction::VALUE MovingObject::changeDirection(Direction::VALUE newDirection){
 }
 
 //===================================
-// verify if player is alive 
-// according to the number
-// of lives he has left
+// verify if object is alive 
 //===================================
 bool MovingObject::getObjAlive(){
 	return objAlive;
@@ -119,6 +117,13 @@ void MovingObject::objMove(){
 	case Direction::STAY:
 		break;
 	}
+}
+
+void MovingObject::objMovement()
+{
+	objErase();
+	objMove();
+	objDraw();
 }
 
 Point MovingObject::objNextPos(){

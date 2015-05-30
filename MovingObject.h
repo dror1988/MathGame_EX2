@@ -43,7 +43,8 @@ public:
 	MovingObject(unsigned char objChar, Direction::VALUE objDirection, Point objPosition, Color objColor) :objChar(objChar),
 		objAlive(true), objDirection(objDirection), objPosition(objPosition), objColor(objColor){
 	}
-
+	// MovingObject destructor
+	virtual ~MovingObject(){}
 	// object init
 	void initObject(unsigned char setChar, Direction::VALUE setDirection, Point setPosition, Color setColor){
 		objChar = setChar;
@@ -61,8 +62,7 @@ public:
 	Point setPosition(Point newPosition);
 	// direction setter
 	Direction::VALUE changeDirection(Direction::VALUE newDirection);
-	// verify if object is alive according to the number
-	// of lives he has left
+	// returns if object is alive
 	bool getObjAlive();
 	// reset the value of object alive
 	void resetObjAlive();
@@ -70,9 +70,10 @@ public:
 	void objDraw()const;
 	// erase a player from his position on screen
 	void objErase()const;
-	// computes the movement of a player according to the players direction
+	// computes the movement of an Object according to the Object direction
 	void objMove();
-	// return the players position after a move
+	void objMovement();
+	// return an object position after a move
 	Point objNextPos();
 };
 
