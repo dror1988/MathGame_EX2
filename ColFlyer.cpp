@@ -1,7 +1,27 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ColFlyer.cpp
+// -----------
+// This file declares a base class that defines a class derived from MovingObjects that implements Column Flyer
+// cretures abilities and characters
+//
+// Author: Maya Bugana
+// First version: 2015-05-30 
+// 
+// This code is part of a solution for "the math game" excercise in C++ course, Semester B 2015
+// at the Academic College of Tel-Aviv-Yaffo.
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Changes and additions:
+// ------------------------
+// DATE           Authors                 Change / Addition
+// ----           --------                -----------------
+// 2015-05-30    Maya Bugana    implemented the ColFlyer class
+
 #include"ColFlyer.h"
 
 
+//===================================
 //handling a colusion with a Player
+//===================================
 void ColFlyer::coliddedAPlayer(Player& p, int playerNum, StatusBar &stBar)
 {
 	if ((p.getPosition() == objNextPos()) ||
@@ -32,7 +52,9 @@ void ColFlyer::coliddedAPlayer(Player& p, int playerNum, StatusBar &stBar)
 	}
 }
 
-
+//===================================
+//check if a shot colusion with a Player
+//===================================
 bool ColFlyer::coliddedAShot(Point shotPos, Point shotNextPos)
 {
 	if (shotNextPos == objNextPos() ||

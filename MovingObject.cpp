@@ -62,7 +62,7 @@ void MovingObject::resetObjAlive(){
 }
 
 //===================================
-// print a player in his 
+// print a object in his 
 // position on screen
 //===================================
 void MovingObject::objDraw() const{
@@ -73,7 +73,7 @@ void MovingObject::objDraw() const{
 }
 
 //===================================
-// erase a player from his position 
+// erase a object from his position 
 // on screen
 //===================================
 void MovingObject::objErase()const{
@@ -82,8 +82,8 @@ void MovingObject::objErase()const{
 }
 
 //===================================
-// computes the movement of a player 
-// according to the players direction
+// computes the movement of an object 
+// according to the object direction
 //===================================
 void MovingObject::objMove(){
 	// use direction as a case
@@ -119,6 +119,10 @@ void MovingObject::objMove(){
 	}
 }
 
+//===================================
+// Aggregates all movement functions
+// according to the object direction
+//===================================
 void MovingObject::objMovement()
 {
 	objErase();
@@ -126,6 +130,10 @@ void MovingObject::objMovement()
 	objDraw();
 }
 
+//===================================
+// Calculate object next position
+// according to the object direction
+//===================================
 Point MovingObject::objNextPos(){
 	MovingObject tmp;
 	tmp.setPosition(this->objPosition);
