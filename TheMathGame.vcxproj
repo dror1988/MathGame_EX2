@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdvExercise.h" />
+    <ClInclude Include="ColFlyer.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Direction.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="io_utils.h" />
     <ClInclude Include="ISpecificGame.h" />
+    <ClInclude Include="RowsFlyer.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
@@ -98,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvExercise.cpp" />
+    <ClCompile Include="ColFlyer.cpp" />
     <ClCompile Include="Exercise.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="io_utils.cpp" />
@@ -105,6 +108,7 @@
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RowsFlyer.cpp" />
     <ClCompile Include="screenMatrix.cpp" />
     <ClCompile Include="Shot.cpp" />
     <ClCompile Include="shotsArray.cpp" />
