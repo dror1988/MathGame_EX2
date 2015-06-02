@@ -21,6 +21,7 @@
 #include <string>
 #include "Player.h"
 #include "Number.h"
+#include "NumberList.h"
 #include "Point.h"
 #include "io_utils.h"
 
@@ -33,16 +34,21 @@ class screenMatrix
 {
 	Player &p1,&p2;
 	Number *matrix[24][80];
+	NumberListNode *nodeMatrix[24][80];
+	NumberList numList;
 public:
 	// screenMatrix constructor
 	screenMatrix(Player &player1,Player &player2):p1(player1),p2(player2){
-			for (int i = 0; i < 24; i++)
-	{
-		for (int j = 0; j < 80; j++)
+		for (int i = 0; i < 24; i++)
 		{
-			matrix[i][j] = NULL;
+			for (int j = 0; j < 80; j++)
+			{
+				matrix[i][j] = NULL;
+				nodeMatrix[i][j] = NULL;
+			}
 		}
-	}
+
+		numList.makeEmpty();
 	}
 
 	// screenMatrix destructor
@@ -66,6 +72,10 @@ public:
 	//Deletes a number in a specific position on the screen
 	void eraseNumberInPos(Point numberPosition);
 
+	//Return the closest number to a given point
+	Point findClosestNumber(Point curPoint) const{
+		return numList.findClosestNumber(curPoint);
+	}
 };
 
 #endif

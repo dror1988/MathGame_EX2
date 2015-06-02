@@ -19,6 +19,8 @@
 #define __POINT_H
 
 #include <iostream>
+#include <cmath>
+#include <algorithm> 
 
 using namespace std;
 
@@ -45,6 +47,7 @@ public:
 		y = (rand() % 21 + 3);
 	}
 
+	// overload operator =
 	Point& operator=(const Point& p){
 		if (this != &p){
 			this->x = p.x;
@@ -53,14 +56,22 @@ public:
 		return *this;
 	}
 
+	// overload operator ==
 	bool operator==(const Point& p){
 		return (this->x == p.x && this->y == p.y);
 	}
+
+	// overload operator !=
+	bool operator!=(const Point& p){
+		return (this->x != p.x || this->y != p.y);
+	}
 	
-	//Compare point x and y values
-	bool comparePoints(Point const &otherPoint){
-		return (x == otherPoint.x && y == otherPoint.y);
-	} 
+	unsigned int pointDistance(const Point& p){
+		unsigned int disX, disY;
+		disX = min(abs(x - p.x), min(x, p.x) + (80 - max(x, p.x)));
+		disY = min(abs(y - p.y), min(y, p.y) + (21 - max(y, p.y)));
+		return disX + disY;
+	}
 };
 
 #endif

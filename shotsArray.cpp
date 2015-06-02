@@ -13,8 +13,8 @@
 // ------------------------
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
-// 2015-04-10    Maya Bugana     implemented the shotArray class
-// 2015-04-13	 Dror Moyal      Adding functions
+// 2015-05-10    Maya Bugana     implemented the shotArray class
+// 2015-05-13	 Dror Moyal      Adding functions
 
 #include "shotsArray.h"
 
@@ -23,7 +23,7 @@
 //===================================
 shotsArray::shotsArray()
 {
-	for (unsigned int i = 0; i < size; i++)
+	for (unsigned int i = 0; i < 30; i++)
 		Arr[i] = NULL;
 	
 	size = 0;
@@ -76,7 +76,10 @@ unsigned int shotsArray::getSize()
 //===================================
 Shot* shotsArray::getShotInArr(int i)
 {
-	return Arr[i];
+	if ((unsigned int)i < size)
+		return Arr[i];
+	else
+		return NULL;
 }
 
 //===================================
@@ -86,23 +89,6 @@ unsigned int  shotsArray::setSize(unsigned int newSize)
 {
 	size = newSize;
 	return size;
-}
-
-//===================================
-// manage the movements of all shots in array
-//===================================
-void shotsArray::move()
-{
-	if (size != 0)
-	{
-		for (unsigned int i = 0; i < size; i++)
-		{
-			Arr[i]->shotMove();
-			delete Arr[i];
-			Arr[i] = NULL;
-			--size;
-		}		
-	}
 }
 
 //===================================

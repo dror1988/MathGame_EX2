@@ -182,6 +182,8 @@ void TheMathGame::startLevel(int level){
 	RowsFlyerL.initObject(Direction::LEFT, Point(50, 15));
 	ColFlyerUP.initObject(Direction::UP, Point(45, 23));
 	ColFlyerD.initObject(Direction::DOWN, Point(55, 15));
+	eater1.initObject(Direction::DOWN, Point(10, 19));
+	eater2.initObject(Direction::UP, Point(70, 19));
 }
 
 //=================================================
@@ -208,6 +210,11 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 
 		// create a number each second instaed of each 200ms, if successful print to screen
 		myScreen.createNumber(currentLevel);
+
+		if (eater1.getNumToEatPosition() == Point(0, 0))
+			eater1.setNumToEatPosition(myScreen.findClosestNumber(eater1.getPosition()));
+		if (eater2.getNumToEatPosition() == Point(0, 0))
+			eater2.setNumToEatPosition(myScreen.findClosestNumber(eater2.getPosition()));
 	}
 
 	// using the input from the users keyboard hits
@@ -262,6 +269,15 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		default:
 			break;
 		}
+	}
+
+	if (myScreen.isNumberExist(ColFlyerUP.objNextPos()))
+	{
+		myScreen.getNumberInPos(ColFlyerUP.objNextPos());
+	}
+	if (myScreen.isNumberExist(ColFlyerD.objNextPos()))
+	{
+		myScreen.getNumberInPos(ColFlyerD.objNextPos());
 	}
 
 	// check if the player is still alive and according to the direction of its
@@ -340,39 +356,34 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 
 	}
 
-	// movement of RowsFlyerR
-	RowsFlyerR.objMovement();
-	RowsFlyerL.objMovement();
-}
-
-void TheMathGame::doSubIteration()
-{
-	//Handles cretures colutions with the players
-	RowsFlyerR.coliddedAPlayer(player1, 1, stBar);
-	RowsFlyerR.coliddedAPlayer(player2, 2, stBar);
-	RowsFlyerL.coliddedAPlayer(player1, 1, stBar);
-	RowsFlyerL.coliddedAPlayer(player2, 2, stBar);
+	ColFlyerUP.objMovement();
+	ColFlyerD.objMovement();
 	ColFlyerUP.coliddedAPlayer(player1, 1, stBar);
 	ColFlyerUP.coliddedAPlayer(player2, 2, stBar);
 	ColFlyerD.coliddedAPlayer(player1, 1, stBar);
 	ColFlyerD.coliddedAPlayer(player2, 2, stBar);
+}
 
+void TheMathGame::doSubIteration()
+{
 	//Handles flying cretures colutions with Numbers
 	if (myScreen.isNumberExist(RowsFlyerR.objNextPos()))
 	{
 		myScreen.getNumberInPos(RowsFlyerR.objNextPos());
 	}
-	else if (myScreen.isNumberExist(RowsFlyerL.objNextPos()))
+	if (myScreen.isNumberExist(RowsFlyerL.objNextPos()))
 	{
 		myScreen.getNumberInPos(RowsFlyerL.objNextPos());
 	}
-	else if (myScreen.isNumberExist(ColFlyerUP.objNextPos()))
+	if (myScreen.isNumberExist(eater1.objNextPos()))
 	{
-		myScreen.getNumberInPos(ColFlyerUP.objNextPos());
+		myScreen.getNumberInPos(eater1.objNextPos());
+		eater1.setNumToEatPosition(myScreen.findClosestNumber(eater1.getPosition()));
 	}
-	else if (myScreen.isNumberExist(ColFlyerD.objNextPos()))
+	if (myScreen.isNumberExist(eater2.objNextPos()))
 	{
-		myScreen.getNumberInPos(ColFlyerD.objNextPos());
+		myScreen.getNumberInPos(eater2.objNextPos());
+		eater2.setNumToEatPosition(myScreen.findClosestNumber(eater2.getPosition()));
 	}
 
 	//hadle shots movemene if the arr is not empty
@@ -387,7 +398,9 @@ void TheMathGame::doSubIteration()
 			if (RowsFlyerR.coliddedAShot(shotPos, shotNextPos)|| 
 				RowsFlyerL.coliddedAShot(shotPos, shotNextPos)||
 				ColFlyerUP.coliddedAShot(shotPos, shotNextPos)||
-				ColFlyerD.coliddedAShot(shotPos, shotNextPos)
+				ColFlyerD.coliddedAShot(shotPos, shotNextPos) ||
+				eater1.coliddedAShot(shotPos, shotNextPos) ||
+				eater2.coliddedAShot(shotPos, shotNextPos)
 				)
 				playShooting.delShot(i);
 
@@ -434,8 +447,38 @@ void TheMathGame::doSubIteration()
 				playShooting.getShotInArr(i)->shotMove();
 		}
 	}
+
+	Point numToEatPos;
+	numToEatPos = eater1.getNumToEatPosition();
+	if (numToEatPos != Point(0, 0)){
+		//case a number the eater was on his way to was eaten
+		if (!myScreen.isNumberExist(numToEatPos)){
+			eater1.setNumToEatPosition(myScreen.findClosestNumber(eater1.getPosition()));
+		}
+	}
+	numToEatPos = eater2.getNumToEatPosition();
+	if (numToEatPos != Point(0, 0)){
+		//case a number the eater was on his way to was eaten
+		if (!myScreen.isNumberExist(numToEatPos)){
+			eater2.setNumToEatPosition(myScreen.findClosestNumber(eater2.getPosition()));
+		}
+	}
+
+	eater1.updateDirection();
+	eater2.updateDirection();
+	eater1.objMovement();
+	eater2.objMovement();
+
 	RowsFlyerR.objMovement();
 	RowsFlyerL.objMovement();
-	ColFlyerUP.objMovement();
-	ColFlyerD.objMovement();
+
+	//Handles cretures colutions with the players
+	RowsFlyerR.coliddedAPlayer(player1, 1, stBar);
+	RowsFlyerR.coliddedAPlayer(player2, 2, stBar);
+	RowsFlyerL.coliddedAPlayer(player1, 1, stBar);
+	RowsFlyerL.coliddedAPlayer(player2, 2, stBar);
+	eater1.coliddedAPlayer(player1, 1, stBar);
+	eater1.coliddedAPlayer(player2, 2, stBar);
+	eater2.coliddedAPlayer(player1, 1, stBar);
+	eater2.coliddedAPlayer(player2, 2, stBar);
 }

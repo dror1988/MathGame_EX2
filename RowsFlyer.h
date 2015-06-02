@@ -25,13 +25,13 @@
 class RowsFlyer : public MovingObject{
 public:
 	// RowsFlayer constructor	
-	RowsFlyer(Direction::VALUE flayerDirection, Point flayerPosition)
-		: MovingObject('!', flayerDirection, flayerPosition, BLUE){
+	RowsFlyer(Direction::VALUE flyerDirection, Point flyerPosition)
+		: MovingObject('!', flyerDirection, flyerPosition, LIGHTBLUE){
 	}
 	// Flyer creature init
 	void initObject(Direction::VALUE setDirection, Point setPosition)
 	{
-		MovingObject::initObject('!', setDirection, setPosition, BLUE);
+		MovingObject::initObject('!', setDirection, setPosition, LIGHTBLUE);
 	}
 	//handling a colusion with a Player
 	void coliddedAPlayer(Player& p, int playerNum, StatusBar& stBar);

@@ -21,6 +21,7 @@
 #include "StatusBar.h"
 #include "shotsArray.h"
 #include "RowsFlyer.h"
+#include "NumberEater.h"
 #include "ColFlyer.h"
 #include <iostream>
 #include <stdlib.h>
@@ -40,6 +41,9 @@ class TheMathGame : public ISpecificGame
 	RowsFlyer RowsFlyerL;
 	ColFlyer ColFlyerUP;
 	ColFlyer ColFlyerD;
+	NumberEater eater1;
+	NumberEater eater2;
+
 	// const variables
 	const static unsigned int CLOCK_TICKS_PER_LEVEL = 1500;
 public:
@@ -53,7 +57,9 @@ public:
 		RowsFlyerR(Direction::RIGHT, Point(30, 23)),
 		RowsFlyerL(Direction::LEFT, Point(50, 15)),
 		ColFlyerUP(Direction::UP, Point(45, 23)),
-		ColFlyerD(Direction::DOWN, Point(55, 15)){
+		ColFlyerD(Direction::DOWN, Point(55, 15)),
+		eater1(Direction::DOWN, Point(10, 19)),
+		eater2(Direction::UP, Point(70, 19)){
 	}
 
 	//=================================================

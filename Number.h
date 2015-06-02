@@ -44,6 +44,16 @@ public:
 		isOnes = false;
 	}
 
+	Number& operator=(const Number& num){
+		if (this != &num){
+			this->Num = num.Num;
+			this->isTens = num.isTens;
+			this->isOnes = num.isOnes;
+			this->numberPosition = num.numberPosition;
+		}
+		return *this;
+	}
+
 	// Number getter
 	unsigned int getNum()const;
 	// IsTens getter

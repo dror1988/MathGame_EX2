@@ -87,6 +87,8 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="io_utils.h" />
     <ClInclude Include="ISpecificGame.h" />
+    <ClInclude Include="NumberEater.h" />
+    <ClInclude Include="NumberList.h" />
     <ClInclude Include="RowsFlyer.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Number.h" />
@@ -107,6 +109,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Number.cpp" />
+    <ClCompile Include="NumberEater.cpp" />
+    <ClCompile Include="NumberList.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RowsFlyer.cpp" />
     <ClCompile Include="screenMatrix.cpp" />

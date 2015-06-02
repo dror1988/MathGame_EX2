@@ -14,6 +14,7 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the screenMatrix class
+// 2015-06-02	Dror Moyal			added NumberList
 
 
 #include "screenMatrix.h"
@@ -26,6 +27,8 @@ screenMatrix::~screenMatrix(){
 			if (matrix[i][j] != NULL)
 				delete matrix[i][j];
 				matrix[i][j] = NULL;
+				numList.deleteNode(nodeMatrix[i][j]);
+				nodeMatrix[i][j] = NULL;
 		}
 	}
 }
@@ -76,6 +79,7 @@ void screenMatrix::createNumber(int currentLevel){
 				if (isSuccess==true){
 					gotoxy(numPosition.x,numPosition.y);
 					cout<<newOne->getNum();
+					numList.insertToTail(newOne);
 				}
 			}
 			else
@@ -119,6 +123,8 @@ void screenMatrix::createNumber(int currentLevel){
 				if (isSuccess==true){
 					gotoxy(tensPosition.x,tensPosition.y);
 					cout<<newTens->getNum()<<newOnes->getNum();
+					numList.insertToTail(newTens);
+					numList.insertToTail(newOnes);
 				}
 			}
 			else
@@ -160,6 +166,8 @@ void screenMatrix::eraseMatrix(){
 			{
 				delete matrix[i][j];
 				matrix[i][j] = NULL;
+				numList.deleteNode(nodeMatrix[i][j]);
+				nodeMatrix[i][j] = NULL;
 				gotoxy(j, i);
 				cout << ' ';
 			}
@@ -174,6 +182,8 @@ void screenMatrix::eraseMatrix(){
 void screenMatrix::eraseNumberInPos(Point numberPosition){
 	delete matrix[numberPosition.y][numberPosition.x];
 	matrix[numberPosition.y][numberPosition.x]=NULL;
+	numList.deleteNode(nodeMatrix[numberPosition.y][numberPosition.x]);
+	nodeMatrix[numberPosition.y][numberPosition.x] = NULL;
 }
 
 //===================================

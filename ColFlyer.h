@@ -25,8 +25,8 @@
 class ColFlyer : public MovingObject{
 public:
 	// ColFlyer constructor	
-	ColFlyer(Direction::VALUE flayerDirection, Point flayerPosition)
-		: MovingObject('$', flayerDirection, flayerPosition, MAGENTA){
+	ColFlyer(Direction::VALUE flyerDirection, Point flyerPosition)
+		: MovingObject('$', flyerDirection, flyerPosition, MAGENTA){
 	}
 	// Flyer creature init
 	void initObject(Direction::VALUE setDirection, Point setPosition)
