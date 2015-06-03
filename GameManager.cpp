@@ -183,11 +183,13 @@ void GameManager::printInstructions() const{
 		cout << "    - DOWN    = x                                                          " << endl;
 		cout << "    - LEFT    = a                                                          " << endl;
 		cout << "    - RIGHT   = d                                                          " << endl;
+		cout << "    - SHOOT   = z                                                          " << endl;
 		cout << " * Player-2 (Using \"#\" character):                                       " << endl;
 		cout << "    - UP      = i                                                          " << endl;
 		cout << "    - DOWN    = m                                                          " << endl;
 		cout << "    - LEFT    = j                                                          " << endl;
 		cout << "    - RIGHT   = l                                                          " << endl;
+		cout << "    - SHOOT   = n                                                          " << endl;
 		cout << endl;
 		cout << "GOOD LUCK!!!!                                                              ";
 		gotoxy(0, 23);

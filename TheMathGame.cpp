@@ -205,14 +205,17 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 	if (clockTicksCurrentLevel % 5 == 0){
 		stBar.decTimeLeft();
 		stBar.updateTimeLeft();
+	}
 
-		//adding shots to the player every 200 clocks cycles
-		if (clockTicksCurrentLevel % 200 == 0){
-			player1.setShotsCounter(player1.getShotsCounter() + 1);
-			stBar.updatePlayerShots(1);
-			player2.setShotsCounter(player2.getShotsCounter() + 1);
-			stBar.updatePlayerShots(2);
-		}
+	//adding shots to the player every 200 clocks cycles
+	if (clockTicksCurrentLevel % 200 == 0){
+		player1.setShotsCounter(player1.getShotsCounter() + 1);
+		stBar.updatePlayerShots(1);
+		player2.setShotsCounter(player2.getShotsCounter() + 1);
+		stBar.updatePlayerShots(2);
+	}
+
+	if (clockTicksCurrentLevel % 2 == 0){
 
 		// create a number each second instaed of each 200ms, if successful print to screen
 		myScreen.createNumber(currentLevel);
