@@ -108,14 +108,31 @@ void NumberList::deleteNode(NumberListNode* pNode){
 	}
 }
 
+Point NumberList::shortestDistanceToNewNumber(Point curPoint)const{
+	Point p(0, 0), tmpPoint(0, 0);
+	unsigned int distance = 999;
+	NumberListNode *pTemp;
+
+	for (pTemp = getTailNumber(); pTemp != NULL; pTemp = pTemp->next){
+		tmpPoint = pTemp->data.getNumberPosition();
+		if (curPoint.pointDistance(tmpPoint) < distance){
+			distance = curPoint.pointDistance(tmpPoint);
+			p = tmpPoint;
+		}
+	}
+
+	return p;
+}
+
+// Function to find the closest number on the screen
 Point NumberList::findClosestNumber(Point curPoint) const{
 	Point p(0,0),tmpPoint(0,0);
 	unsigned int distance=999;
 
-	if (!isEmpty()){
+	if (!isEmpty()){ // if the list is not empty
 		for (NumberListNode* pNode = head; pNode != NULL; pNode = pNode->next){
 			tmpPoint = pNode->data.getNumberPosition();
-			if (curPoint.pointDistance(tmpPoint) < distance){
+			if (curPoint.pointDistance(tmpPoint) < distance){ // point that is closer
 				distance = curPoint.pointDistance(tmpPoint);
 				p = tmpPoint;
 			}
@@ -123,4 +140,15 @@ Point NumberList::findClosestNumber(Point curPoint) const{
 	}
 	
 	return p;
+}
+
+NumberListNode* NumberList::getTailNumber()const{
+	if (tail->data.getIsOnes())
+		return tail->prev;
+	else
+		return tail;
+}
+
+NumberListNode* NumberList::getTail()const{
+	return tail;
 }

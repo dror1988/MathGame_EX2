@@ -76,6 +76,11 @@ public:
 	Point findClosestNumber(Point curPoint) const{
 		return numList.findClosestNumber(curPoint);
 	}
+
+	//Return the closest number to a given point
+	Point shortestDistanceToNewNumber(Point curPoint) const{
+		return numList.shortestDistanceToNewNumber(curPoint);
+	}
 };
 
 #endif

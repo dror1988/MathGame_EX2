@@ -80,6 +80,7 @@ void screenMatrix::createNumber(int currentLevel){
 					gotoxy(numPosition.x,numPosition.y);
 					cout<<newOne->getNum();
 					numList.insertToTail(newOne);
+					nodeMatrix[numPosition.y][numPosition.x] = numList.getTail();
 				}
 			}
 			else
@@ -124,7 +125,9 @@ void screenMatrix::createNumber(int currentLevel){
 					gotoxy(tensPosition.x,tensPosition.y);
 					cout<<newTens->getNum()<<newOnes->getNum();
 					numList.insertToTail(newTens);
+					nodeMatrix[tensPosition.y][tensPosition.x] = numList.getTail();
 					numList.insertToTail(newOnes);
+					nodeMatrix[tensPosition.y][tensPosition.x+1] = numList.getTail();
 				}
 			}
 			else

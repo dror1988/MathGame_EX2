@@ -66,10 +66,11 @@ public:
 		return (this->x != p.x || this->y != p.y);
 	}
 	
+	// return distance between 2 points
 	unsigned int pointDistance(const Point& p){
 		unsigned int disX, disY;
-		disX = min(abs(x - p.x), min(x, p.x) + (80 - max(x, p.x)));
-		disY = min(abs(y - p.y), min(y, p.y) + (21 - max(y, p.y)));
+		disX = min(abs(x - p.x), min(x, p.x) + 1 + (79 - max(x, p.x)));
+		disY = min(abs(y - p.y), min(y, p.y) + 1 + (23 - max(y, p.y))-3);
 		return disX + disY;
 	}
 };

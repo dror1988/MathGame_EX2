@@ -48,10 +48,12 @@ public:
 	void deleteNode(NumberListNode* pNode);
 	// Find closest Number on the screen to a given point
 	Point findClosestNumber(Point curPoint) const;
+	// Finf if new number on screen is closer then the current 
+	Point shortestDistanceToNewNumber(Point curPoint)const;
 	// return the number in the tail
-	Number getTail()const{
-		return tail->data;
-	}
+	NumberListNode* getTailNumber()const;
+	// return the tail address
+	NumberListNode* getTail()const;
 };
 
 
