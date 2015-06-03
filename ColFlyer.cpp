@@ -15,6 +15,9 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-05-30    Maya Bugana    implemented the ColFlyer class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Maya Bugana, date=2015-05-30
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include"ColFlyer.h"
 
@@ -63,3 +66,7 @@ bool ColFlyer::coliddedAShot(Point shotPos, Point shotNextPos)
 	else
 		return false;
 }
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

@@ -15,9 +15,13 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-05-30    Maya Bugana    implemented the ColFlyer class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Maya Bugana, date=2015-05-30
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #ifndef _COL_FLYER_H
 #define _COL_FLYER_H
+
 #include "MovingObject.h"
 #include "Player.h"
 #include "StatusBar.h"
@@ -40,3 +44,7 @@ public:
 };
 
 #endif
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

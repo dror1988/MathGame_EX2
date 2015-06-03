@@ -14,6 +14,8 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-11     Dror Moyal      implemented the TheMathGame class
+// 2015-31-05     Maya Bugana     added colflyer and rowflyer and thier logic
+// 2015-06-02     Dror Moyal      added the number eater and its logic
 
 #include "io_utils.h"
 #include "screenMatrix.h"
@@ -37,12 +39,18 @@ class TheMathGame : public ISpecificGame
 	StatusBar stBar;
 	unsigned int clockTicksCurrentLevel;
 	shotsArray playShooting;
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	RowsFlyer RowsFlyerR;
 	RowsFlyer RowsFlyerL;
 	ColFlyer ColFlyerUP;
 	ColFlyer ColFlyerD;
 	NumberEater eater1;
 	NumberEater eater2;
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
 
 	// const variables
 	const static unsigned int CLOCK_TICKS_PER_LEVEL = 1500;
@@ -54,12 +62,18 @@ public:
 		player1('@', Direction::RIGHT, Point(10, 9)),
 		player2('#', Direction::LEFT, Point(70, 9)),
 		currentLevel(0), myScreen(player1, player2), stBar(player1, player2),
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		RowsFlyerR(Direction::RIGHT, Point(30, 23)),
 		RowsFlyerL(Direction::LEFT, Point(50, 15)),
 		ColFlyerUP(Direction::UP, Point(45, 23)),
 		ColFlyerD(Direction::DOWN, Point(55, 15)),
 		eater1(Direction::DOWN, Point(10, 19)),
 		eater2(Direction::UP, Point(70, 19)){
+		//+++++++++++++++++++++
+		// END of NEW CODE EX3
+		//+++++++++++++++++++++
 	}
 
 	//=================================================

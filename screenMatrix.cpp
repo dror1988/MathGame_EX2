@@ -14,7 +14,7 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the screenMatrix class
-// 2015-06-02	Dror Moyal			added NumberList
+// 2015-06-02	Dror Moyal			added NumberList and relevent methods
 
 
 #include "screenMatrix.h"
@@ -27,8 +27,14 @@ screenMatrix::~screenMatrix(){
 			if (matrix[i][j] != NULL)
 				delete matrix[i][j];
 				matrix[i][j] = NULL;
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
+				// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
 				numList.deleteNode(nodeMatrix[i][j]);
 				nodeMatrix[i][j] = NULL;
+				//+++++++++++++++++++++
+				// END of NEW CODE EX3
+				//+++++++++++++++++++++
 		}
 	}
 }
@@ -79,8 +85,14 @@ void screenMatrix::createNumber(int currentLevel){
 				if (isSuccess==true){
 					gotoxy(numPosition.x,numPosition.y);
 					cout<<newOne->getNum();
+					// +++++++++++++++++++++++++++++++++++++++++++++++++
+					// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+					// +++++++++++++++++++++++++++++++++++++++++++++++++
 					numList.insertToTail(newOne);
 					nodeMatrix[numPosition.y][numPosition.x] = numList.getTail();
+					//+++++++++++++++++++++
+					// END of NEW CODE EX3
+					//+++++++++++++++++++++
 				}
 			}
 			else
@@ -124,10 +136,16 @@ void screenMatrix::createNumber(int currentLevel){
 				if (isSuccess==true){
 					gotoxy(tensPosition.x,tensPosition.y);
 					cout<<newTens->getNum()<<newOnes->getNum();
+					// +++++++++++++++++++++++++++++++++++++++++++++++++
+					// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+					// +++++++++++++++++++++++++++++++++++++++++++++++++
 					numList.insertToTail(newTens);
 					nodeMatrix[tensPosition.y][tensPosition.x] = numList.getTail();
 					numList.insertToTail(newOnes);
 					nodeMatrix[tensPosition.y][tensPosition.x+1] = numList.getTail();
+					//+++++++++++++++++++++
+					// END of NEW CODE EX3
+					//+++++++++++++++++++++
 				}
 			}
 			else
@@ -169,8 +187,14 @@ void screenMatrix::eraseMatrix(){
 			{
 				delete matrix[i][j];
 				matrix[i][j] = NULL;
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
+				// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
 				numList.deleteNode(nodeMatrix[i][j]);
 				nodeMatrix[i][j] = NULL;
+				//+++++++++++++++++++++
+				// END of NEW CODE EX3
+				//+++++++++++++++++++++
 				gotoxy(j, i);
 				cout << ' ';
 			}
@@ -185,8 +209,14 @@ void screenMatrix::eraseMatrix(){
 void screenMatrix::eraseNumberInPos(Point numberPosition){
 	delete matrix[numberPosition.y][numberPosition.x];
 	matrix[numberPosition.y][numberPosition.x]=NULL;
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
 	numList.deleteNode(nodeMatrix[numberPosition.y][numberPosition.x]);
 	nodeMatrix[numberPosition.y][numberPosition.x] = NULL;
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
 }
 
 //===================================

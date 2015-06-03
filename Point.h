@@ -14,6 +14,7 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-08     Dror Moyal      implemented the Point class
+// 2015-05-26	  Dror Moyal		Added operators overload and distance function
 
 #ifndef __POINT_H
 #define __POINT_H
@@ -47,6 +48,10 @@ public:
 		y = (rand() % 21 + 3);
 	}
 
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-05-26
+	// +++++++++++++++++++++++++++++++++++++++++++++++++
+
 	// overload operator =
 	Point& operator=(const Point& p){
 		if (this != &p){
@@ -73,6 +78,10 @@ public:
 		disY = min(abs(y - p.y), min(y, p.y) + 1 + (23 - max(y, p.y))-3);
 		return disX + disY;
 	}
+
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
 };
 
 #endif

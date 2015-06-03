@@ -341,7 +341,6 @@ bool Player::isMoveLegal(Point otherPlayerPos){
 	// if the new position of the player is not in the
 	// same position as the other player then the move
 	// is legal
-	//if (tempPoint.x == otherPlayerPos.x && tempPoint.y == otherPlayerPos.y)
 	if (tempPoint == otherPlayerPos)
 		return false;
 	else

@@ -14,6 +14,7 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-04-10    Maya Bugana     implemented the screenMatrix class
+// 2015-06-02	Dror Moyal			added NumberList and relevent methods
 
 #ifndef __SCREEN_MATRIX_H
 #define __SCREEN_MATRIX_H
@@ -44,11 +45,17 @@ public:
 			for (int j = 0; j < 80; j++)
 			{
 				matrix[i][j] = NULL;
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
+				// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
 				nodeMatrix[i][j] = NULL;
 			}
 		}
 
 		numList.makeEmpty();
+		//+++++++++++++++++++++
+		// END of NEW CODE EX3
+		//+++++++++++++++++++++
 	}
 
 	// screenMatrix destructor

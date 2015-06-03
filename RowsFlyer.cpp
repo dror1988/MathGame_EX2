@@ -15,6 +15,9 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-05-30    Maya Bugana    implemented the RowsFlyer class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Maya Bugana, date=2015-05-30
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "RowsFlyer.h"
 
@@ -65,3 +68,7 @@ bool RowsFlyer::coliddedAShot(Point shotPos, Point shotNextPos)
 	else
 		return false;
 }
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

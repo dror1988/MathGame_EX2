@@ -177,6 +177,9 @@ void TheMathGame::startLevel(int level){
 	// erase all bullets from screen and cleans the array
 	playShooting.initArr();
 
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//inits all creatures
 	RowsFlyerR.initObject(Direction::RIGHT, Point(30, 23));
 	RowsFlyerL.initObject(Direction::LEFT, Point(50, 15));
@@ -184,6 +187,9 @@ void TheMathGame::startLevel(int level){
 	ColFlyerD.initObject(Direction::DOWN, Point(55, 15));
 	eater1.initObject(Direction::DOWN, Point(10, 19));
 	eater2.initObject(Direction::UP, Point(70, 19));
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
 }
 
 //=================================================
@@ -211,6 +217,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		// create a number each second instaed of each 200ms, if successful print to screen
 		myScreen.createNumber(currentLevel);
 
+		// +++++++++++++++++++++++++++++++++++++++++++++++++
+		// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+		// +++++++++++++++++++++++++++++++++++++++++++++++++
 		// make the eaters to try to eat the closest number
 		if (eater1.getNumToEatPosition() == Point(0, 0)) // case that currently there is no point to eat
 			eater1.setNumToEatPosition(myScreen.findClosestNumber(eater1.getPosition()));
@@ -226,6 +235,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			if (newNumber.pointDistance(eater2.getPosition()) < eater2.getNumToEatPosition().pointDistance(eater2.getPosition()))
 				eater2.setNumToEatPosition(newNumber);
 		}
+		//+++++++++++++++++++++
+		// END of NEW CODE EX3
+		//+++++++++++++++++++++
 	}
 
 	// using the input from the users keyboard hits
@@ -262,6 +274,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 				int index;
 				index=playShooting.addShot(player1.getPosition(), player1.getDirection());
 				playShooting.getShotInArr(index)->shotMove();
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
+				// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
 				if (player2.getPosition() == playShooting.getShotInArr(index)->getPosition()){
 					player2.setLives(player2.getLives() - 1);
 					stBar.updatePlayerLife(2);
@@ -275,6 +290,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 				}
 				else
 					playShooting.getShotInArr(index)->shotMove();
+				//+++++++++++++++++++++
+				// END of NEW CODE EX3
+				//+++++++++++++++++++++
 				player1.setShotsCounter(player1.getShotsCounter() - 1);
 				stBar.updatePlayerShots(1);
 			}
@@ -284,6 +302,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			if ((player2.getShotsCounter() > 0) && player2.isPlayerAlive()){
 				index = playShooting.addShot(player2.getPosition(), player2.getDirection());
 				playShooting.getShotInArr(index)->shotMove();
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
+				// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+				// +++++++++++++++++++++++++++++++++++++++++++++++++
 				if (player1.getPosition() == playShooting.getShotInArr(index)->getPosition()){
 					player1.setLives(player1.getLives() - 1);
 					stBar.updatePlayerLife(1);
@@ -296,6 +317,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					}
 				}else
 					playShooting.getShotInArr(index)->shotMove();
+				//+++++++++++++++++++++
+				// END of NEW CODE EX3
+				//+++++++++++++++++++++
 				player2.setShotsCounter(player2.getShotsCounter() - 1);
 				stBar.updatePlayerShots(2);
 			}
@@ -305,6 +329,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 		}
 	}
 
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	// Handle movment of column flyer
 	ColFlyerUP.objMovement();
 	ColFlyerD.objMovement();
@@ -322,6 +349,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 	{
 		myScreen.getNumberInPos(ColFlyerD.getPosition());
 	}
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
 
 	// check if the player is still alive and according to the direction of its
 	// movment and the position of the oponent player see if the player can move
@@ -414,7 +444,9 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 
 void TheMathGame::doSubIteration()
 {
-
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+	// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	eater1.updateDirection();
 	eater2.updateDirection();
 	eater1.objMovement();
@@ -457,6 +489,10 @@ void TheMathGame::doSubIteration()
 		eater2.setNumToEatPosition(myScreen.findClosestNumber(eater2.getPosition()));
 	}
 
+	//+++++++++++++++++++++
+	// END of NEW CODE EX3
+	//+++++++++++++++++++++
+
 	//hadle shots movemene if the arr is not empty
 	if (playShooting.getSize() > 0)
 	{
@@ -465,6 +501,9 @@ void TheMathGame::doSubIteration()
 			Point shotNextPos = playShooting.getShotInArr(i)->shotNextPos();
 			Point shotPos = playShooting.getShotInArr(i)->getPosition();
 
+			// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02,  author=Maya Bugana, date=2015-31-05    
+			// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			//check if a shot was colidded one of the Moving Objects
 			if (RowsFlyerR.coliddedAShot(shotPos, shotNextPos)|| 
 				RowsFlyerL.coliddedAShot(shotPos, shotNextPos)||
@@ -474,6 +513,9 @@ void TheMathGame::doSubIteration()
 				eater2.coliddedAShot(shotPos, shotNextPos)
 				)
 				playShooting.delShot(i);
+			//+++++++++++++++++++++
+			// END of NEW CODE EX3
+			//+++++++++++++++++++++
 
 			//check if a shot is now "eating" a number
 			else if (myScreen.isNumberExist(shotNextPos))

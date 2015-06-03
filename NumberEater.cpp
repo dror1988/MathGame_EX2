@@ -15,6 +15,9 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-06-02   Dror Moyal    implemented the NumberEater class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "NumberEater.h"
 
@@ -70,11 +73,12 @@ bool NumberEater::coliddedAShot(Point shotPos, Point shotNextPos)
 // be eaten
 //===================================
 void NumberEater::updateDirection(){
-	if (numToEatPosition == Point(0, 0))
+	// handles direction of the number eater
+	if (numToEatPosition == Point(0, 0)) //case there is no number to eat
 		changeDirection(Direction::STAY);
 	else{
-		if (disToX > 0){
-			if ((getPosition().x + disToX) == numToEatPosition.x){
+		if (disToX > 0){ //while need to move on X axle
+			if ((getPosition().x + disToX) == numToEatPosition.x){ 
 				changeDirection(Direction::RIGHT);
 				setDisToX(--disToX);
 			}
@@ -93,7 +97,7 @@ void NumberEater::updateDirection(){
 				}
 			}
 		}
-		else if (disToY > 0){
+		else if (disToY > 0){ //while need to move on Y axle
 			if ((getPosition().y + disToY) == numToEatPosition.y){
 				changeDirection(Direction::DOWN);
 				setDisToY(--disToY);
@@ -113,7 +117,7 @@ void NumberEater::updateDirection(){
 				}
 			}
 		}
-		else
+		else //any other case
 			changeDirection(Direction::STAY);
 	}
 }
@@ -128,3 +132,7 @@ Point NumberEater::setNumToEatPosition(Point newPoint){
 	disToY = min(abs(getPosition().y - newPoint.y), min(getPosition().y, newPoint.y) + 1 + (23 - max(getPosition().y, newPoint.y)) - 3);
 	return numToEatPosition;
 }
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

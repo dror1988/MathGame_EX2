@@ -14,6 +14,9 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-05-26    Dror Moyal      implemented the MovingObject class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Dror Moyal, date=2015-05-26 
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "MovingObject.h"
 
@@ -141,3 +144,7 @@ Point MovingObject::objNextPos(){
 	tmp.objMove();
 	return tmp.getPosition();
 }
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

@@ -4,7 +4,7 @@
 // This file declares a class to manage the numbers list data structor for the screen.
 //
 // Author: Dror Moyal
-// First version: 2015-02-06
+// First version: 2015-06-02
 // 
 // This code is part of a solution for "the math game" excercise in C++ course, Semester B 2015
 // at the Academic College of Tel-Aviv-Yaffo.
@@ -14,10 +14,15 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-06-02   Dror Moyal     implemented the NumberList class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #include "NumberList.h"
 
+//===================================
 // Object destructor
+//===================================
 NumberList::~NumberList(){
 	NumberListNode* pTemp = NULL;
 
@@ -31,7 +36,9 @@ NumberList::~NumberList(){
 	}
 }
 
+//===================================
 // Function that verifies if the list is empty
+//===================================
 bool NumberList::isEmpty() const{
 	if (head == NULL) // list is empty
 		return true;
@@ -39,7 +46,9 @@ bool NumberList::isEmpty() const{
 		return false;
 }
 
+//===================================
 // Function that make a list an emprt list
+//===================================
 void NumberList::makeEmpty(){
 	// if the list is not empty
 	if (!isEmpty()){
@@ -56,7 +65,9 @@ void NumberList::makeEmpty(){
 	head = tail = NULL;
 }
 
+//===================================
 // Function to create a new node and store the given data
+//===================================
 NumberListNode* NumberList::createNode(Number *data){
 	NumberListNode* pNode = new NumberListNode;
 
@@ -68,7 +79,9 @@ NumberListNode* NumberList::createNode(Number *data){
 	return pNode;
 }
 
+//===================================
 // Function to insert a data into a list tail
+//===================================
 void NumberList::insertToTail(Number* data){
 	NumberListNode *pNode = createNode(data);
 
@@ -83,7 +96,9 @@ void NumberList::insertToTail(Number* data){
 	}
 }
 
+//===================================
 // Function delete a node
+//===================================
 void NumberList::deleteNode(NumberListNode* pNode){
 	if (pNode != NULL && !isEmpty()){
 		if (pNode->next != NULL && pNode->prev != NULL){
@@ -108,6 +123,12 @@ void NumberList::deleteNode(NumberListNode* pNode){
 	}
 }
 
+//===================================
+// find the shortest distance from a
+// given node in the list until its end
+// used to find the distnace to the new
+// number on the screen
+//===================================
 Point NumberList::shortestDistanceToNewNumber(Point curPoint)const{
 	Point p(0, 0), tmpPoint(0, 0);
 	unsigned int distance = 999;
@@ -124,7 +145,9 @@ Point NumberList::shortestDistanceToNewNumber(Point curPoint)const{
 	return p;
 }
 
+//===================================
 // Function to find the closest number on the screen
+//===================================
 Point NumberList::findClosestNumber(Point curPoint) const{
 	Point p(0,0),tmpPoint(0,0);
 	unsigned int distance=999;
@@ -142,6 +165,13 @@ Point NumberList::findClosestNumber(Point curPoint) const{
 	return p;
 }
 
+//===================================
+// function that returns the node of 
+// the last number in the list.
+// in case the number has 2 digits it
+// will return the address of the node 
+// before the tail
+//===================================
 NumberListNode* NumberList::getTailNumber()const{
 	if (tail->data.getIsOnes())
 		return tail->prev;
@@ -149,6 +179,13 @@ NumberListNode* NumberList::getTailNumber()const{
 		return tail;
 }
 
+//===================================
+// return the tail node
+//===================================
 NumberListNode* NumberList::getTail()const{
 	return tail;
 }
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

@@ -14,6 +14,9 @@
 // DATE           Authors                 Change / Addition
 // ----           --------                -----------------
 // 2015-05-26    Dror Moyal      implemented the MovingObject class
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Dror Moyal, date=2015-05-26
+// +++++++++++++++++++++++++++++++++++++++++++++++++
 
 #ifndef _MOVING_OBJECT_H
 #define _MOVING_OBJECT_H
@@ -72,9 +75,14 @@ public:
 	void objErase()const;
 	// computes the movement of an Object according to the Object direction
 	void objMove();
+	// preform all actions that implements object movment
 	void objMovement();
 	// return an object position after a move
 	Point objNextPos();
 };
 
 #endif
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++

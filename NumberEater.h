@@ -16,14 +16,23 @@
 // ----           --------                -----------------
 // 2015-06-02   Dror Moyal    implemented the NumberEater class
 
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+// "NEW CODE EX3, author=Dror Moyal, date=2015-06-02 
+// +++++++++++++++++++++++++++++++++++++++++++++++++
+
 #ifndef _NUMBER_EATER_H
 #define _NUMBER_EATER_H
+
 #include "MovingObject.h"
 #include "Player.h"
 #include "StatusBar.h"
 #include <cmath>
 #include <algorithm> 
 
+//=====================================
+// this class implements creature
+// number eater
+//=====================================
 class NumberEater : public MovingObject{
 	unsigned int disToX;
 	unsigned int disToY;
@@ -72,3 +81,7 @@ public:
 };
 
 #endif
+
+//+++++++++++++++++++++
+// END of NEW CODE EX3
+//+++++++++++++++++++++
