@@ -261,8 +261,20 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			if ((player1.getShotsCounter() > 0) && player1.isPlayerAlive()){
 				int index;
 				index=playShooting.addShot(player1.getPosition(), player1.getDirection());
-				playShooting.getShotInArr(index)->shotMove(); 
 				playShooting.getShotInArr(index)->shotMove();
+				if (player2.getPosition() == playShooting.getShotInArr(index)->getPosition()){
+					player2.setLives(player2.getLives() - 1);
+					stBar.updatePlayerLife(2);
+					playShooting.delShot(index);
+					// if player is ran out of lives
+					if (player2.isPlayerAlive()){
+						player2.playerErase();
+						player2.setPosition(Point(70, 9));
+						player2.changeDirection(Direction::LEFT);
+					}
+				}
+				else
+					playShooting.getShotInArr(index)->shotMove();
 				player1.setShotsCounter(player1.getShotsCounter() - 1);
 				stBar.updatePlayerShots(1);
 			}
@@ -272,7 +284,18 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 			if ((player2.getShotsCounter() > 0) && player2.isPlayerAlive()){
 				index = playShooting.addShot(player2.getPosition(), player2.getDirection());
 				playShooting.getShotInArr(index)->shotMove();
-				playShooting.getShotInArr(index)->shotMove();
+				if (player1.getPosition() == playShooting.getShotInArr(index)->getPosition()){
+					player1.setLives(player1.getLives() - 1);
+					stBar.updatePlayerLife(1);
+					playShooting.delShot(index);
+					// if player is ran out of lives
+					if (player1.isPlayerAlive()){
+						player1.playerErase();
+						player1.setPosition(Point(10, 9));
+						player1.changeDirection(Direction::RIGHT);
+					}
+				}else
+					playShooting.getShotInArr(index)->shotMove();
 				player2.setShotsCounter(player2.getShotsCounter() - 1);
 				stBar.updatePlayerShots(2);
 			}
@@ -315,8 +338,11 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player1.setLives(player1.getLives() - 1);
 					stBar.updatePlayerLife(1);
 					// if user ran out of lives
-					if (!player1.isPlayerAlive())
+					if (player1.isPlayerAlive()){
 						player1.playerErase();
+						player1.setPosition(Point(10, 9));
+						player1.changeDirection(Direction::RIGHT);
+					}
 				}
 				else{
 					player1.setScore(player1.getScore() + 1);
@@ -327,8 +353,11 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player1.setLives(player1.getLives() - 1);
 					stBar.updatePlayerLife(1);
 					// if user ran out of lives
-					if (!player1.isPlayerAlive())
+					if (player1.isPlayerAlive()){
 						player1.playerErase();
+						player1.setPosition(Point(10, 9));
+						player1.changeDirection(Direction::RIGHT);
+					}
 				}
 				else{
 					stBar.updatePlayerExercise(1);
@@ -353,8 +382,11 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player2.setLives(player2.getLives() - 1);
 					stBar.updatePlayerLife(2);
 					// if user ran out of lives
-					if (!player2.isPlayerAlive())
+					if (player2.isPlayerAlive()){
 						player2.playerErase();
+						player2.setPosition(Point(70, 9));
+						player2.changeDirection(Direction::LEFT);
+					}
 				}
 				else{
 					player2.setScore(player2.getScore() + 1);
@@ -365,8 +397,11 @@ void TheMathGame::doIteration(const list<char>& keyHits){
 					player2.setLives(player2.getLives() - 1);
 					stBar.updatePlayerLife(2);
 					// if user ran out of lives
-					if (!player2.isPlayerAlive())
+					if (player2.isPlayerAlive()){
 						player2.playerErase();
+						player2.setPosition(Point(70, 9));
+						player2.changeDirection(Direction::LEFT);
+					}
 				}
 				else{
 					stBar.updatePlayerExercise(2);
@@ -389,15 +424,19 @@ void TheMathGame::doSubIteration()
 	RowsFlyerL.objMovement();
 
 	//Handles cretures colutions with the players
-	RowsFlyerR.coliddedAPlayer(player1, 1, stBar);
-	RowsFlyerR.coliddedAPlayer(player2, 2, stBar);
-	RowsFlyerL.coliddedAPlayer(player1, 1, stBar);
-	RowsFlyerL.coliddedAPlayer(player2, 2, stBar);
-	eater1.coliddedAPlayer(player1, 1, stBar);
-	eater1.coliddedAPlayer(player2, 2, stBar);
-	eater2.coliddedAPlayer(player1, 1, stBar);
-	eater2.coliddedAPlayer(player2, 2, stBar);
+	if (player1.isPlayerAlive()){
+		RowsFlyerR.coliddedAPlayer(player1, 1, stBar);
+		RowsFlyerL.coliddedAPlayer(player1, 1, stBar);
+		eater1.coliddedAPlayer(player1, 1, stBar);
+		eater2.coliddedAPlayer(player1, 1, stBar);
+	}
 
+	if (player2.isPlayerAlive()){
+		RowsFlyerR.coliddedAPlayer(player2, 2, stBar);
+		RowsFlyerL.coliddedAPlayer(player2, 2, stBar);
+		eater1.coliddedAPlayer(player2, 2, stBar);
+		eater2.coliddedAPlayer(player2, 2, stBar);
+	}
 	//Handles flying cretures colutions with Numbers
 	if (myScreen.isNumberExist(RowsFlyerR.getPosition()))
 	{
@@ -450,12 +489,10 @@ void TheMathGame::doSubIteration()
 				stBar.updatePlayerLife(1);
 				playShooting.delShot(i);
 				// if player is ran out of lives
-				if (!player1.isPlayerAlive())
-					player1.playerErase();
-				else
-				{
+				if (player1.isPlayerAlive()){
 					player1.playerErase();
 					player1.setPosition(Point(10, 9));
+					player1.changeDirection(Direction::RIGHT);
 				}	
 			}
 			//check if a shot is "eating" Player2
@@ -466,12 +503,10 @@ void TheMathGame::doSubIteration()
 				stBar.updatePlayerLife(2);
 				playShooting.delShot(i);
 				// if player is ran out of lives
-				if (!player2.isPlayerAlive())
-					player2.playerErase();
-				else
-				{
+				if (player2.isPlayerAlive()){
 					player2.playerErase();
 					player2.setPosition(Point(70, 9));
+					player2.changeDirection(Direction::LEFT);
 				}
 					
 			}

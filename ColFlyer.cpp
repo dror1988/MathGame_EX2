@@ -24,9 +24,7 @@
 //===================================
 void ColFlyer::coliddedAPlayer(Player& p, int playerNum, StatusBar &stBar)
 {
-	if ((p.getPosition() == objNextPos()) ||
-		(p.playerNextPos() == objNextPos()) ||
-		(p.getPosition() == getPosition()))
+	if ((p.getPosition() == objNextPos()) || (p.playerNextPos() == objNextPos()) || (p.getPosition() == getPosition()))
 	{
 		p.setLives(p.getLives() - 1);
 
@@ -37,17 +35,16 @@ void ColFlyer::coliddedAPlayer(Player& p, int playerNum, StatusBar &stBar)
 			stBar.updatePlayerLife(2);
 
 		// if player is ran out of lives
-		if (!p.isPlayerAlive())
+		if (p.isPlayerAlive()){
 			p.playerErase();
-		else if (playerNum == 1)
-		{
-			p.playerErase();
-			p.setPosition(Point(10, 9));
-		}
-		else if (playerNum == 2)
-		{
-			p.playerErase();
-			p.setPosition(Point(70, 9));
+			if (playerNum == 1){
+				p.setPosition(Point(10, 9));
+				p.changeDirection(Direction::RIGHT);
+			}
+			else{
+				p.setPosition(Point(70, 9));
+				p.changeDirection(Direction::LEFT);
+			}
 		}
 	}
 }

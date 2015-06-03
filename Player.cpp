@@ -182,8 +182,11 @@ Exercise* Player::createExercise(int currentLevel){
 // of lives he has left
 //===================================
 bool Player::isPlayerAlive(){
-	if (playerLives==0)
-		playerAlive=false;
+	if (playerLives == 0){
+		playerErase();
+		playerPosition = Point(0, 0);
+		playerAlive = false;
+	}
 	return playerAlive;
 }
 
